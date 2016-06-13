@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C3C5C9"
+    android:orientation="vertical">
+
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="240dp"-->
+        <!--android:background="@drawable/splash"/>-->
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="90dp"/>
+
+    android:background="@drawable/splash"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/school"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="10dp"
+            android:text="适龄儿童信息采集系统"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:orientation="vertical"
+            android:layout_marginTop="150dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/bg_linear">
+            <Button
+                android:id="@+id/write"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_height="60dp"
+                android:background="#1E88E5"
+                android:textColor="#FFFFFF"
+                android:textSize="17dp"
+                android:text="填写儿童资料"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+            <Button
+                android:id="@+id/login"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textSize="17dp"
+                android:textColor="#FFFFFF"
+                android:background="#1E88E5"
+                android:text="修改/查看资料"/>
+        </LinearLayout>
+        <View
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <!--<include layout="@layout/layout_bar"-->
+        <!--/>-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/see_view"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginRight="@dimen/activity_vertical_margin"-->
+        <!--android:layout_marginLeft="@dimen/activity_vertical_margin"-->
+        <!--android:orientation="vertical">-->
+        <!--<com.gc.materialdesign.views.ButtonFlat-->
+            <!--android:id="@+id/huji"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="户籍儿童"/>-->
+        <!--<com.gc.materialdesign.views.ButtonFlat-->
+            <!--android:id="@+id/feihuji"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="非户籍儿童"/>-->
+    <!--</LinearLayout>-->
+
+</LinearLayout>

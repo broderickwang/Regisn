@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.ttb.regisn.activity.SuccessActivity">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#0D1017"
+        android:text="2016年市北区非户籍适龄入学儿童小学入学报名提示单"/>
+    <TextView
+        android:id="@+id/infosus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#003CBD"
+        android:layout_below="@+id/title"/>
+    <TextView
+        android:id="@+id/name"
+        android:layout_below="@+id/infosus"
+        android:textColor="#B00404"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/a1"
+        android:layout_below="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/modify"
+        android:layout_below="@+id/a1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#1E88E5"
+        android:textColor="#FFFFFF"
+        android:text="修改学生资料"/>
+</RelativeLayout>

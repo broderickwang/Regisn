@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Search, should appear as action button -->
+    <item android:id="@+id/action_modify"
+        android:showAsAction="always"
+        android:title="修改资料"
+        />
+    <!-- Settings, should always be in the overflow
+     android:showAsAction="ifRoom"-->
+
+</menu>

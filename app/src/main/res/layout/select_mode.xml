@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="240dp"-->
+        <!--android:background="@drawable/splash"/>-->
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="90dp"/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/write"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_height="wrap_content"
+            android:text="填写儿童资料"/>
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/login"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="修改/查看资料"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/see_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+        <com.gc.materialdesign.views.ButtonFlat
+            android:id="@+id/huji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="户籍儿童"/>
+        <com.gc.materialdesign.views.ButtonFlat
+            android:id="@+id/feihuji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="非户籍儿童"/>
+    </LinearLayout>
+
+</LinearLayout>

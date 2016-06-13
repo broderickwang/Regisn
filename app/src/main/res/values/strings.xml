@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">适龄儿童信息采集系统</string>
+    <string name="hujiadr">户籍地址将作为匹配学校的依据,请仔细填写,部分没有门牌号的以及门牌号楼号单元号户号是中文英文等非数字的地址,请点击特殊地址选择.若有疑问请查看招生简章和咨询教育部门.</string>
+    <string name="nowaddr">现住址将作为匹配学校的依据,请仔细填写,部分没有门牌号的以及门牌号楼号单元号户号是中文英文等非数字的地址,请点击特殊地址选择.若有疑问请查看招生简章和咨询教育部门.</string>
+    <string name="title_activity_login">LoginActivity</string>
+</resources>
