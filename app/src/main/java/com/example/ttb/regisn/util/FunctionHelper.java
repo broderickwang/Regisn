@@ -11,6 +11,10 @@ import java.util.Hashtable;
 
 /**
  * Created by ttb on 16/4/18.
+ *
+ * Modified by Marc on 2017-03-28
+ *
+ * FunctionHelper存储公共变量
  */
 public class FunctionHelper {
 
