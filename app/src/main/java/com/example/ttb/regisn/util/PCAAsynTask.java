@@ -36,6 +36,7 @@ public class PCAAsynTask extends AsyncTask {
             }
             return result;
         }catch (Exception e){
+            Log.e("PCAAsynTask", "doInBackground: ", e);
             e.printStackTrace();
             return null;
         }

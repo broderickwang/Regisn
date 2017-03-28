@@ -32,6 +32,10 @@ import com.gc.materialdesign.views.ButtonRectangle;
 
 import org.json.JSONObject;
 
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 public class WebViewActivity extends AppCompatActivity {
 
     private TextView webView;
@@ -53,11 +57,16 @@ public class WebViewActivity extends AppCompatActivity {
 //            Utils.showDialog(WebViewActivity.this,"连接网络失败，请检查网络设置！");
 //            return;
 //        }
-        new ServerProvinceAsynTask().execute();
+        /*new ServerProvinceAsynTask().execute();
         new ServerCitiesAsynTask().execute();
         new ServerQDCountiesAsynTask().execute();
         new ServerJiedaoAsynTask().execute();
-        new PCAAsynTask().execute();
+        new PCAAsynTask().execute();*/
+        new ServerProvinceAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new ServerCitiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new ServerQDCountiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new ServerJiedaoAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new PCAAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         FunctionHelper.hujidiisequaltonow.add(new InfoBean("1","是-y",""));
         FunctionHelper.hujidiisequaltonow.add(new InfoBean("0","否-n",""));
         FunctionHelper.zongList.add(new InfoBean("1","是-y",""));

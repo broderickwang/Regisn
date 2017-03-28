@@ -1,6 +1,7 @@
 package com.example.ttb.regisn.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -154,7 +155,8 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                     View view1 = HomeTwoActivity.this.getWindow().getDecorView();
                     List<View> list = OutPut.setOutMap(OutPut.getAllChildViews(view1));
                     if (FunctionHelper.isModify){
-                        result = (boolean) new UpdateAsynTask().execute().get();
+//                        result = (boolean) new UpdateAsynTask().execute().get();
+                        result = (boolean)new UpdateAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
                         if(result) {
                             Toast.makeText(HomeTwoActivity.this, "修改成功！", Toast.LENGTH_SHORT).show();
                             // 16/4/25 跳转到successful页面
@@ -167,7 +169,8 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                     else {
-                        result = (boolean) new ServerInsertAsynTask().execute(HomeTwoActivity.this).get();
+                        //result = (boolean) new ServerInsertAsynTask().execute(HomeTwoActivity.this).get();
+                        result = (boolean)new ServerInsertAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,HomeTwoActivity.this).get();
                         if(result){
                             Toast.makeText(HomeTwoActivity.this, "信息采集成功！", Toast.LENGTH_SHORT).show();
                             // 16/4/25 跳转到successful页面
@@ -295,7 +298,8 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                     View view1 = this.getWindow().getDecorView();
                     List<View> list = OutPut.setOutMap(OutPut.getAllChildViews(view1));
                     if (FunctionHelper.isModify){
-                        result = (boolean) new UpdateAsynTask().execute().get();
+//                        result = (boolean) new UpdateAsynTask().execute().get();
+                        result = (boolean)new UpdateAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
                         if(result) {
                             Toast.makeText(HomeTwoActivity.this, "修改成功！", Toast.LENGTH_SHORT).show();
                             // 16/4/25 跳转到successful页面
@@ -308,7 +312,8 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                     else {
-                        result = (boolean) new ServerInsertAsynTask().execute(HomeTwoActivity.this).get();
+                       // result = (boolean) new ServerInsertAsynTask().execute(HomeTwoActivity.this).get();
+                        result = (boolean)new ServerInsertAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,HomeTwoActivity.this).get();
                         if(result){
                             Toast.makeText(HomeTwoActivity.this, "信息采集成功！", Toast.LENGTH_SHORT).show();
                             // 16/4/25 跳转到successful页面

@@ -1,6 +1,7 @@
 package com.example.ttb.regisn.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,8 @@ public class Main2Activity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                new ServerAsynTask().execute();
+//                new ServerAsynTask().execute();
+                new ServerAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 Intent intent = new Intent(Main2Activity.this,WebViewActivity.class/*MainActivity.class*/);  //从启动动画ui跳转到主ui
                 startActivity(intent);
                 Main2Activity.this.finish();    // 结束启动动画界面

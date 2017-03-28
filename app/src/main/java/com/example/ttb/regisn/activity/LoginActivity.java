@@ -60,7 +60,8 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             case R.id.login:
                 Object[] session = {uname.getText().toString(),upwd.getText().toString()};
                 try {
-                    boolean result = (boolean)new LoginTask().execute(session).get();
+//                    boolean result = (boolean)new LoginTask().execute(session).get();
+                    boolean result = (boolean)new LoginTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,session).get();
                     if(result) {
                         Intent intent = new Intent(LoginActivity.this, SuccessActivity.class);
                         FunctionHelper.isModify = true;
