@@ -15,7 +15,7 @@
         android:gravity="center"
         android:textSize="20dp"
         android:textColor="#0D1017"
-        android:text="2016年市北区非户籍适龄入学儿童小学入学报名提示单"/>
+        android:text="2017年市北区非户籍适龄入学儿童小学入学报名提示单"/>
     <TextView
         android:id="@+id/infosus"
         android:layout_width="match_parent"

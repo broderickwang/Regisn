@@ -1,6 +1,7 @@
 package com.example.ttb.regisn.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,7 +38,8 @@ public class SuccessActivity extends AppCompatActivity {
         tvTitle.setText("个人信息");
 
         try {
-            result = (boolean)new AT1().execute().get();
+//            result = (boolean)new AT1().execute().get();
+            result = (boolean)new AT1().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
             if (result) {
                 if (FunctionHelper.isHjchild) {
                     //如果是户籍儿童调用HJInfoShowAsynTask
@@ -90,9 +92,9 @@ public class SuccessActivity extends AppCompatActivity {
 
     private void showInfo(){
         if(FunctionHelper.isHjchild){
-            title.setText("2016年市北区户籍适龄入学儿童小学入学报名提示单");
+            title.setText("2017年市北区户籍适龄入学儿童小学入学报名提示单");
         }else{
-            title.setText("2016年市北区非户籍适龄入学儿童小学入学报名提示单");
+            title.setText("2017年市北区非户籍适龄入学儿童小学入学报名提示单");
         }
 
 
@@ -115,7 +117,7 @@ public class SuccessActivity extends AppCompatActivity {
                 "8.预防接种证。\n" +
                 "9.健康证明。\n" +
                 "10.幼儿园评估手册。\n" +
-                "友情提示：如果您需修改资料，请在2016年4月28日至2016年5月27日，登陆本系统首页“修改资料”模块，使用登录帐号（适龄入学儿童身份证号码）、登录密码（系统自动生成的或您修改的），进行修改。请确保您填写的信息真实合法有效，不实信息不作为报名依据。";
+                "友情提示：如果您需修改资料，请在2017年4月28日至2017年5月27日，登陆本系统首页“修改资料”模块，使用登录帐号（适龄入学儿童身份证号码）、登录密码（系统自动生成的或您修改的），进行修改。请确保您填写的信息真实合法有效，不实信息不作为报名依据。";
 
         a1.setText(a);
     }
