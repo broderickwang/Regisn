@@ -13,6 +13,6 @@
         <!--android:dashWidth="1dp"-->
         <!--android:dashGap="1dp"/>-->
     <!-- solid 实心 -->
-    <solid android:color="#389DEC"/>
+    <solid android:color="#a0d1f7"/>
     <!--#389DEC-->
 </shape>

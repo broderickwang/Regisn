@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class BaseInfoFHJActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ButtonRectangle next;
+    private Button next;
     private boolean isSFZ;
     private View m_Masker;
 //    private TextView m_Jiguan,m_Birthday,m_Minzu,m_SFZType,m_Sex,m_Language,m_Health,m_Chushengdi;
@@ -170,7 +171,7 @@ public class BaseInfoFHJActivity extends AppCompatActivity implements View.OnCli
         }
     }
     private void  initView(){
-        next = (ButtonRectangle)findViewById(R.id.next);
+        next = (Button)findViewById(R.id.next);
         m_OptionJiGuan = new OptionsPickerView(this);
         m_OptionMenu = new OptionsPickerView(this);
         m_Masker = (View)findViewById(R.id.vMasker);
@@ -206,23 +207,22 @@ public class BaseInfoFHJActivity extends AppCompatActivity implements View.OnCli
         m_Guobie = (TextView)findViewById(R.id.guobie);
     }
     private void initAddresData3(final TextView tv){
-//        InitData.loadProvices(options1Items,options2Items,options3Items);
-        m_OptionJiGuan.setPicker(FunctionHelper.province_3j,FunctionHelper.cities_3j,FunctionHelper.contries_3j,true);
-        m_OptionJiGuan.setCancelable(true);
+        if(FunctionHelper.province_3j.size() > 0) {
+            m_OptionJiGuan.setPicker(FunctionHelper.province_3j, FunctionHelper.cities_3j, FunctionHelper.contries_3j, true);
+            m_OptionJiGuan.setCancelable(true);
 
-        m_OptionJiGuan.setCyclic(false);
-//        m_OptionJiGuan.setTitle("请选择城市");
+            m_OptionJiGuan.setCyclic(false);
 
-
-        m_OptionJiGuan.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int option2, int options3) {
-                String tx = FunctionHelper.province_3j.get(options1)+"-"+
-                        FunctionHelper.cities_3j.get(options1).get(option2)+"-"+
-                        FunctionHelper.contries_3j.get(options1).get(option2).get(options3);
-                tv.setText(tx);
-            }
-        });
+            m_OptionJiGuan.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int options1, int option2, int options3) {
+                    String tx = FunctionHelper.province_3j.get(options1) + "-" +
+                            FunctionHelper.cities_3j.get(options1).get(option2) + "-" +
+                            FunctionHelper.contries_3j.get(options1).get(option2).get(options3);
+                    tv.setText(tx);
+                }
+            });
+        }
     }
     private void setListner(){
         next.setOnClickListener(new View.OnClickListener() {

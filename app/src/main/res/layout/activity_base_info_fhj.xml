@@ -506,14 +506,15 @@
                 <!--android:layout_marginTop="10dp"-->
                 <!--android:text="*必填，如果转学请选择对应年级"/>-->
         <!--</LinearLayout>-->
-        <com.gc.materialdesign.views.ButtonRectangle
+        <Button
+            android:background="@drawable/btn_bk4"
             android:id="@+id/next"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_vertical_margin"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:text="下一步"></com.gc.materialdesign.views.ButtonRectangle>
+            android:text="下一步"></Button>
         <View
             android:id="@+id/vMasker"
             android:visibility="gone"

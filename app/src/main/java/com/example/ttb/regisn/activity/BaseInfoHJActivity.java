@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BaseInfoHJActivity extends AppCompatActivity implements View.OnClickListener {
-    private ButtonRectangle m_next;
+    private Button m_next;
     private View m_Masker;
     private TextView m_Jiguan,m_Birthday,m_Minzu,m_SFZType,m_Sex,m_Language,m_Health,m_Chushengdi;
     private OptionsPickerView m_OptionJiGuan, m_OptionMenu;
@@ -86,7 +87,7 @@ public class BaseInfoHJActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initView(){
-        m_next = (ButtonRectangle) findViewById(R.id.next);
+        m_next = (Button) findViewById(R.id.next);
         m_Jiguan = (TextView)findViewById(R.id.jiguan);
         m_Birthday = (TextView)findViewById(R.id.birthday);
         m_Minzu = (TextView)findViewById(R.id.minzu);
@@ -144,21 +145,22 @@ public class BaseInfoHJActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initAddresData3(final TextView tv){
-        m_OptionJiGuan.setPicker(FunctionHelper.province_3j,FunctionHelper.cities_3j,FunctionHelper.contries_3j,true);
-        m_OptionJiGuan.setCancelable(true);
+        if(FunctionHelper.province_3j.size() > 0) {
+            m_OptionJiGuan.setPicker(FunctionHelper.province_3j, FunctionHelper.cities_3j, FunctionHelper.contries_3j, true);
+            m_OptionJiGuan.setCancelable(true);
 
-        m_OptionJiGuan.setCyclic(false);
+            m_OptionJiGuan.setCyclic(false);
 
-
-        m_OptionJiGuan.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int option2, int options3) {
-                String tx = FunctionHelper.province_3j.get(options1)+"-"+
-                        FunctionHelper.cities_3j.get(options1).get(option2)+"-"+
-                        FunctionHelper.contries_3j.get(options1).get(option2).get(options3);
-                tv.setText(tx);
-            }
-        });
+            m_OptionJiGuan.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int options1, int option2, int options3) {
+                    String tx = FunctionHelper.province_3j.get(options1) + "-" +
+                            FunctionHelper.cities_3j.get(options1).get(option2) + "-" +
+                            FunctionHelper.contries_3j.get(options1).get(option2).get(options3);
+                    tv.setText(tx);
+                }
+            });
+        }
     }
     private void initTimeData(){
         m_TimePicker = new TimePickerView(this, TimePickerView.Type.YEAR_MONTH_DAY);

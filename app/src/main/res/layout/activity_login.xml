@@ -32,12 +32,12 @@
             android:inputType="textPassword"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_edittext"/>
-        <com.gc.materialdesign.views.ButtonRectangle
+        <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#89c3eb"
-            android:text="登录"></com.gc.materialdesign.views.ButtonRectangle>
+            android:background="@drawable/btn_bk4"
+            android:text="登录"></Button>
     </LinearLayout>
 </RelativeLayout>

@@ -245,13 +245,14 @@
             android:layout_weight="0.5"
             android:text="*"/>
     </LinearLayout>
-    <com.gc.materialdesign.views.ButtonRectangle
+    <Button
+        android:background="@drawable/btn_bk4"
         android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:text="下一步"></com.gc.materialdesign.views.ButtonRectangle>
+        android:text="下一步"></Button>
     <View
         android:id="@+id/vMasker"
         android:background="#e0000000"

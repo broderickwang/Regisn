@@ -416,20 +416,22 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-            <com.gc.materialdesign.views.ButtonRectangle
+            <Button
+                android:background="@drawable/btn_bk4"
                 android:id="@+id/jump"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:text="跳过，提交"></com.gc.materialdesign.views.ButtonRectangle>
-            <com.gc.materialdesign.views.ButtonRectangle
+                android:text="跳过，提交"></Button>
+            <Button
+                android:background="@drawable/btn_bk4"
                 android:id="@+id/commit"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:text="提交"></com.gc.materialdesign.views.ButtonRectangle>
+                android:text="提交"></Button>
 
         </LinearLayout>
 

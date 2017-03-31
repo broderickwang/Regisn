@@ -2,15 +2,20 @@ package com.example.ttb.regisn.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +44,13 @@ import java.util.concurrent.TimeUnit;
 public class WebViewActivity extends AppCompatActivity {
 
     private TextView webView;
-    private ButtonRectangle in,out;
+    private Button in,out;
+
+    private ServiceConnection sc = new MyServiceConnection();
+    private BackService.MyBinder mBinder ;
+    private BackService mService;
+    private boolean mBound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +73,11 @@ public class WebViewActivity extends AppCompatActivity {
         new ServerQDCountiesAsynTask().execute();
         new ServerJiedaoAsynTask().execute();
         new PCAAsynTask().execute();*/
-        new ServerProvinceAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        Intent service = new Intent(WebViewActivity.this,BackService.class);
+        bindService(service,sc, Context.BIND_AUTO_CREATE);
+
+        /*new ServerProvinceAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new ServerCitiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new ServerQDCountiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new ServerJiedaoAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -107,7 +122,7 @@ public class WebViewActivity extends AppCompatActivity {
         FunctionHelper.fangwulaiyuan.add(new InfoBean("租赁","租赁",""));
         FunctionHelper.zongList.add(new InfoBean("自有","自有",""));
         FunctionHelper.zongList.add(new InfoBean("租赁","租赁",""));
-        initTeshuAddr();
+        initTeshuAddr();*/
 
 
         webView = (TextView)findViewById(R.id.webview);
@@ -161,7 +176,7 @@ public class WebViewActivity extends AppCompatActivity {
         Spanned text = Html.fromHtml(str);
         webView.setText(text);
 
-        in = (ButtonRectangle)findViewById(R.id.in);
+        in = (Button)findViewById(R.id.in);
         in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,7 +184,7 @@ public class WebViewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        out = (ButtonRectangle)findViewById(R.id.out);
+        out = (Button)findViewById(R.id.out);
         out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -193,6 +208,22 @@ public class WebViewActivity extends AppCompatActivity {
         for(int i=0;i<a.length;i++) {
             FunctionHelper.teshuaddrlist.add(new InfoBean(a[i],a[i],""));
             FunctionHelper.zongList.add(new InfoBean(a[i],a[i],""));
+        }
+    }
+
+    private class MyServiceConnection implements ServiceConnection{
+
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            mBinder = (BackService.MyBinder)iBinder;
+            mService = mBinder.getService();
+
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            mBound = false;
         }
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -28,7 +29,7 @@ import java.util.List;
 
 public class HomeTwoActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ButtonRectangle commit,jump;
+    private Button commit,jump;
     private LinearLayout yyzz,sbkh,gzxz;
     private View m_Masker;
     private RadioButton wg,gt;
@@ -94,8 +95,8 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
 
     }
     private void initView(){
-        commit = (ButtonRectangle)findViewById(R.id.commit);
-        jump = (ButtonRectangle)findViewById(R.id.jump);
+        commit = (Button)findViewById(R.id.commit);
+        jump = (Button)findViewById(R.id.jump);
 
         m_OptionMenu = new OptionsPickerView(this);
         m_Masker = (View)findViewById(R.id.vMasker);

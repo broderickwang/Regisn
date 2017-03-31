@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.ttb.regisn.R;
@@ -37,7 +38,7 @@ import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends Activity implements View.OnClickListener{
 
-    private ButtonRectangle login;
+    private Button login;
     private EditText uname,upwd;
 
     @Override
@@ -46,7 +47,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_login);
 //        getSupportActionBar().hide();
 //        getActionBar().hide();
-        login = (ButtonRectangle)findViewById(R.id.login);
+        login = (Button)findViewById(R.id.login);
         uname = (EditText)findViewById(R.id.uname);
         upwd = (EditText)findViewById(R.id.pswd) ;
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -26,7 +27,7 @@ import java.util.List;
 public class HomeOneActivity extends AppCompatActivity implements View.OnClickListener{
 
     private LinearLayout yyzz,sbkh,gzxz;
-    ButtonRectangle next;
+    Button next;
     private View m_Masker;
     private RadioButton wg,gt;
     private OptionsPickerView m_OptionMenu;
@@ -148,7 +149,7 @@ public class HomeOneActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
     private void initView(){
-        next = (ButtonRectangle)findViewById(R.id.next);
+        next = (Button)findViewById(R.id.next);
         m_OptionMenu = new OptionsPickerView(this);
         m_Masker = (View)findViewById(R.id.vMasker);
 

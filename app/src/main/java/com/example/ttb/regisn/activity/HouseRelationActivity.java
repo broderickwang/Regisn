@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class HouseRelationActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ButtonRectangle next;
+    private Button next;
     private View m_Masker;
     private OptionsPickerView m_OptionMenu;
     private TimePickerView m_TimePicker;
@@ -124,7 +125,7 @@ public class HouseRelationActivity extends AppCompatActivity implements View.OnC
     private void initView(){
         m_OptionMenu = new OptionsPickerView(this);
         m_Masker = (View)findViewById(R.id.vMasker);
-        next = (ButtonRectangle)findViewById(R.id.next);
+        next = (Button)findViewById(R.id.next);
 
         m_Time=(TextView)findViewById(R.id.hrtime);
         m_Time.setText("2007-01-01");

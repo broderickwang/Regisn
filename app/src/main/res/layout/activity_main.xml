@@ -43,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:layout_height="60dp"
-                android:background="#1E88E5"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bk4"
                 android:textColor="#FFFFFF"
                 android:textSize="17dp"
                 android:text="填写儿童资料"/>
@@ -56,10 +56,10 @@
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bk4"
                 android:textSize="17dp"
                 android:textColor="#FFFFFF"
-                android:background="#1E88E5"
                 android:text="修改/查看资料"/>
         </LinearLayout>
         <View

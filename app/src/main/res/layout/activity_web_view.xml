@@ -11,7 +11,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,15 +32,17 @@
                 android:gravity="center"
                 android:layout_below="@+id/sl1"
                 android:orientation="horizontal">
-                <com.gc.materialdesign.views.ButtonRectangle
+                <Button
+                    android:background="@drawable/btn_bk4"
                     android:id="@+id/in"
                     android:layout_width="150dp"
-                    android:layout_height="45dp"
+                    android:layout_height="55dp"
                     android:text="同意，进入"/>
-                <com.gc.materialdesign.views.ButtonRectangle
+                <Button
+                    android:background="@drawable/btn_bk4"
                     android:id="@+id/out"
                     android:layout_width="150dp"
-                    android:layout_height="45dp"
+                    android:layout_height="55dp"
                     android:textColor="#FF0033"
                     android:text="不同意，退出"/>
             </LinearLayout>

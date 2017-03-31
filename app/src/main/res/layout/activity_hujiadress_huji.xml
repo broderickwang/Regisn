@@ -451,15 +451,23 @@
         </LinearLayout>
 
 
+        <!--<Button
+            android:id="@+id/next2222"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bk3"
+            android:text="下一步"></Button>-->
 
-
-        <com.gc.materialdesign.views.ButtonRectangle
+        <Button
+            android:background="@drawable/btn_bk4"
             android:id="@+id/next"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_vertical_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="下一步"></com.gc.materialdesign.views.ButtonRectangle>
+            android:text="下一步"></Button>
         <View
             android:id="@+id/vMasker"
             android:background="#e0000000"

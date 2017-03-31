@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class HujidiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ButtonRectangle next;
+    private Button next;
     private View m_Masker;
     private OptionsPickerView m_OptionMenu;
     private TextView m_Hukouxingzhi,m_Liudongrenkouzhuangkuang,m_Sheng,m_Shi,m_Xian;
@@ -119,7 +120,7 @@ public class HujidiActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView(){
-        next = (ButtonRectangle)findViewById(R.id.next);
+        next = (Button)findViewById(R.id.next);
         m_OptionMenu = new OptionsPickerView(this);
         m_Masker = (View)findViewById(R.id.vMasker);
 

@@ -22,6 +22,7 @@ import com.example.ttb.regisn.util.FunctionHelper;
 import com.example.ttb.regisn.util.OutPut;
 import com.example.ttb.regisn.util.ServerCountiesAsynTask;
 import com.example.ttb.regisn.util.Utils;
+import com.gc.materialdesign.views.Button;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.widgets.Dialog;
 import android.view.WindowManager.LayoutParams;
@@ -31,7 +32,7 @@ import java.util.List;
 
 public class HujiAddrActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ButtonRectangle next;
+    private android.widget.Button next;
     private View m_Masker;
     private OptionsPickerView m_OptionMenu;
 
@@ -142,7 +143,7 @@ public class HujiAddrActivity extends AppCompatActivity implements View.OnClickL
     private void initView(){
         m_OptionMenu = new OptionsPickerView(this);
         m_Masker = (View)findViewById(R.id.vMasker);
-        next = (ButtonRectangle) findViewById(R.id.next);
+        next = (android.widget.Button) findViewById(R.id.next);
 
         m_Hjdisnow = (TextView)findViewById(R.id.hjdisnow);
         m_Hjdisnow.setText("是-y");

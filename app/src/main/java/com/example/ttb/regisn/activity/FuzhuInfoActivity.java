@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class FuzhuInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ButtonRectangle next;
+    private Button next;
     String type = null;
     Intent intent;
     private TextView m_Dushegnzinv,m_Foreign,m_Shangxiaxue,m_Sfsgxqjy;
@@ -101,7 +102,7 @@ public class FuzhuInfoActivity extends AppCompatActivity implements View.OnClick
         m_OptionMenu = new OptionsPickerView(this);
         m_Masker = (View)findViewById(R.id.vMasker);
 
-        next = (ButtonRectangle)findViewById(R.id.next);
+        next = (Button)findViewById(R.id.next);
         m_Dushegnzinv = (TextView)findViewById(R.id.dushengzinv);
         m_Foreign = (TextView)findViewById(R.id.foreign);
         m_Shangxiaxue = (TextView)findViewById(R.id.shangxiaxue);

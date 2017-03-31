@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ttb.regisn">
+          package="com.example.ttb.regisn">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -16,66 +16,73 @@
         <!-- <activity -->
         <!-- android:name=".activity.SplashyActivity" -->
         <!-- 闪屏Main2Activity -->
-        <!--<activity-->
-            <!--android:name=".activity.WebViewActivity"-->
+        <!-- <activity -->
+        <!-- android:name=".activity.WebViewActivity" -->
         <activity
             android:name=".activity.WebViewActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".Auto_Complet_Activity"
             android:label=""
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.BaseInfoHJActivity"
             android:label="户籍儿童信息填写"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.BaseInfoFHJActivity"
             android:label="非户籍儿童信息填写"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.FuzhuInfoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.HujiAddrActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.HujiRelationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.NowAddrActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.HouseRelationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.HomeOneActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.HomeTwoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.HujidiActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".activity.PickerView" />
-        <activity android:name=".activity.SelectModeActivity" />
-        <activity android:name=".activity.TestServletActivity" />
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.PickerView"/>
+        <activity android:name=".activity.SelectModeActivity"/>
+        <activity android:name=".activity.TestServletActivity"/>
         <!-- <activity -->
         <!-- android:name=".activity.MainActivity" -->
         <!-- android:screenOrientation="portrait" /> -->
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.MainActivity"/>
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/transcutestyle" />
-        <activity android:name=".activity.SuccessActivity"
-            android:screenOrientation="portrait"></activity>
+            android:theme="@style/transcutestyle"/>
+        <activity
+            android:name=".activity.SuccessActivity"
+            android:screenOrientation="portrait"/>
+
+        <service
+            android:name=".activity.BackService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
