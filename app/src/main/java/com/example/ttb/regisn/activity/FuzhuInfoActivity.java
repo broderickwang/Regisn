@@ -162,49 +162,24 @@ public class FuzhuInfoActivity extends AppCompatActivity implements View.OnClick
         }
     }
     private int setValue(){
-        StringBuffer tmpsb = new StringBuffer();
-        String a = m_Dushegnzinv.getText().toString();
         if(m_Dushegnzinv.getText().length()<=0||m_Dushegnzinv.getText().equals("－请选择－")) {
             Toast.makeText(FuzhuInfoActivity.this,"请选择独生子女状况",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlOnlyChildType＝"+m_Dushegnzinv.getText()+"&");
-        m_Seldsznzk = Utils.getCode(m_Dushegnzinv.getText().toString(),FunctionHelper.dushengzinvList);
-        tmpsb.append("ddlOnlyChildTypeCode="+m_Seldsznzk+"&");
 
         if(m_Sfsgxqjy.getText().length()<=0||m_Sfsgxqjy.getText().equals("－请选择－")) {
             Toast.makeText(FuzhuInfoActivity.this,"请选择是否受过学前教育",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlIfPreStudy＝"+m_Sfsgxqjy.getText()+"&");
-        m_Selxqjy = Utils.getCode(m_Sfsgxqjy.getText().toString(),FunctionHelper.shifoushouguoxqjy);
-        tmpsb.append("ddlIfPreStudyCode="+m_Selxqjy+"&");
 
         if(m_Foreign.getText().length()<=0||m_Foreign.getText().equals("－请选择－")) {
             Toast.makeText(FuzhuInfoActivity.this,"请选择外语语种",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlForeignLanguage="+m_Foreign.getText()+"&");
-        m_Selwy = Utils.getCode(m_Foreign.getText().toString(),FunctionHelper.foreignList);
-        tmpsb.append("ddlForeignLanguageCode="+m_Selwy+"&");
-
         if(m_Shangxiaxue.getText().length()<=0||m_Shangxiaxue.getText().equals("－请选择－")) {
             Toast.makeText(FuzhuInfoActivity.this,"请选择上下学方式",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlTransType＝"+m_Shangxiaxue.getText()+"&");
-        m_Selsxx = Utils.getCode(m_Shangxiaxue.getText().toString(),FunctionHelper.shangxiaxueList);
-        tmpsb.append("ddlTransTypeCode="+m_Selsxx+"&");
-
-        tmpsb.append("tbxStuPhone＝"+m_Etphone.getText()+"&");
-        tmpsb.append("tbxCommAddress="+m_Etaddr.getText()+"&");
-        tmpsb.append("tbxZipCode="+m_Etyb.getText()+"&");
-        tmpsb.append("taRemark="+m_Etbz.getText()+"&");
-        FunctionHelper.sendSB.append(tmpsb);
         return 0;
-    }
-    private void setSendMap(){
-        ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.activity_fuzhu_info, null);
-        Utils.getKeyValueByView(layout);
     }
 }

@@ -34,15 +34,6 @@ public class Main2Activity extends AppCompatActivity {
         }, 3000);    //启动动画持续3秒钟
 
         getSupportActionBar().hide();
-
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-////        actionBar.setDisplayShowTitleEnabled(true);
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setCustomView(R.layout.layout_actionbar);
-//        TextView tvTitle = (TextView) actionBar.getCustomView().findViewById(R.id.title);
-//        tvTitle.setText("tesdddddsftredfd");
-//        actionBar.hide();
     }
     @Override
     protected void onPause() {
@@ -64,9 +55,7 @@ public class Main2Activity extends AppCompatActivity {
                 m_bSplashActive=false;
                 break;
             case KeyEvent.KEYCODE_BACK:
-            /*两种退出方法*/
-            /* System.exit(0);*/
-            /* android.os.Process.killProcess(android.os.Process.myPid());*/
+                /*两种退出方法*/
                 android.os.Process.killProcess(android.os.Process.myPid());
                 break;
             default:

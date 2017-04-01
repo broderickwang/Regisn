@@ -104,42 +104,6 @@ public class HujiAddrActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-        public void showPop(){
-        bubbleView = getLayoutInflater().inflate(R.layout.pop_layout,null);
-        int tmpWidth = SCREEN_WIDTH/5*3;
-        int tmpHeight =SCREEN_HEIGHT/8;
-        System.out.println("tmpWidth=****=" + tmpWidth);
-        System.out.println("tmpHeight=++++=" + tmpHeight);
-
-        //以指定的样式初始化dialog
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(HujiAddrActivity.this);
-        bubbleAlert = new Dialog(HujiAddrActivity.this,"dg","ddd");
-        Window win = bubbleAlert.getWindow();//获取所在window
-        win.getAttributes();
-        LayoutParams params = win.getAttributes();//获取LayoutParams
-        params.x = -(SCREEN_WIDTH/8);//设置x坐标
-        params.y = -tmpHeight;//设置y坐标
-        params.width = tmpWidth;
-
-        win.setAttributes(params);//设置生效
-
-        bubbleAlert.setCancelable(false);
-        bubbleAlert.setContentView(bubbleView);
-        bubbleAlert.show();
-    }
-    /**
-     * 获取屏幕尺寸
-     */
-    private void getDimension(){
-        /** 获取屏幕的宽和高 */
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        SCREEN_WIDTH = dm.widthPixels;
-        SCREEN_HEIGHT = dm.heightPixels;
-    }
-
     private void initView(){
         m_OptionMenu = new OptionsPickerView(this);
         m_Masker = (View)findViewById(R.id.vMasker);
@@ -285,54 +249,15 @@ public class HujiAddrActivity extends AppCompatActivity implements View.OnClickL
         }
     }
     private int setValue(){
-        StringBuffer tmpsb = new StringBuffer();
         if(m_Hjdisnow.getText().length()<=0||m_Hjdisnow.getText().equals("－请选择－")) {
             Toast.makeText(HujiAddrActivity.this,"请选择户籍地是否实际居住",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlIsRealNowAddr="+m_Hjdisnow.getText()+"&");
-        m_Selhjdisnow = Utils.getCode(m_Hjdisnow.getText().toString(),FunctionHelper.hujidiisequaltonow);
-        tmpsb.append("ddlIsRealNowAddrCode="+m_Selhjdisnow+"&");
 
         if(m_Sheng.getText().length()<=0||m_Sheng.getText().equals("－请选择－")) {
             Toast.makeText(HujiAddrActivity.this,"请选择省",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlRegPlaceP="+m_Sheng.getText()+"&");
-        m_Selsheng = Utils.getCode(m_Sheng.getText().toString(),FunctionHelper.provinces);
-        tmpsb.append("ddlRegPlacePCode="+m_Selsheng+"&");
-
-//        if(m_Shi.getText().length()<=0||m_Shi.getText().equals("－请选择－")) {
-//            Toast.makeText(HujiAddrActivity.this,"请选择市",Toast.LENGTH_SHORT).show();
-//            return -1;
-//        }
-        tmpsb.append("ddlRegPlaceC="+m_Shi.getText()+"&");
-        m_Selshi = Utils.getCode(m_Shi.getText().toString(),FunctionHelper.city1);
-        tmpsb.append("ddlRegPlaceCCode="+m_Selshi+"&");
-
-        tmpsb.append("ddlRegPlaceA="+m_Xian.getText()+"&");
-        // TODO: 16/4/20
-//        m_Selxian = Utils.getCode(m_Xian.getText().toString(),FunctionHelper.)
-        tmpsb.append("ddlRegPlaceACode="+m_Selxian+"&");
-
-        tmpsb.append("ddlRegRoadName="+m_Jiedao.getText()+"&");
-        //// TODO: 16/4/20
-        tmpsb.append("ddlRegRoadNameCode="+m_Seljiedoa+"&");
-
-        tmpsb.append("nbxRegDoorplateNum="+m_Etmenpaihao.getText()+"&");
-
-        tmpsb.append("ddlRegDoorplateMarkNum="+m_Fuhao.getText()+"&");
-        m_Selfuhao = Utils.getCode(m_Fuhao.getText().toString(),FunctionHelper.fuhao);
-        tmpsb.append("ddlRegDoorplateMarkNumCode"+m_Selfuhao+"&");
-
-
-        tmpsb.append("nbxRegTowerNum="+m_Etlouhao.getText()+"&");
-
-        tmpsb.append("nbxRegDanYuanNum="+m_Etdanyuan.getText()+"&");
-
-        tmpsb.append("nbxRegHuNum="+m_Ethuhao.getText()+"&");
-
-        FunctionHelper.sendSB.append(tmpsb);
         return 0;
     }
 }

@@ -234,45 +234,10 @@ public class NowAddrActivity extends AppCompatActivity implements View.OnClickLi
         m_Nowteshu.setOnClickListener(this);
     }
     private int setValue(){
-        StringBuffer tmpsb = new StringBuffer();
-
-        if(houseFrom.getVisibility() == View.VISIBLE){
-            tmpsb.append("ddlFangWuLaiYuan＝"+m_Fangwulaiyuan.getText()+"&");
-            m_Selfangwulaiyuan = Utils.getCode(m_Fangwulaiyuan.getText().toString(),FunctionHelper.fangwulaiyuan);
-            tmpsb.append("ddlFangWuLaiYuanCode="+m_Selfangwulaiyuan+"&");
-        }
-
-        tmpsb.append("ddlStuAddressP="+m_Sheng.getText()+"&");
-        m_Selsheng = Utils.getCode(m_Sheng.getText().toString(),FunctionHelper.provinces);
-        tmpsb.append("ddlStuAddressPCode="+m_Selsheng+"&");
-
-        tmpsb.append("ddlStuAddressC="+m_Shi.getText()+"&");
-        m_Selshi = Utils.getCode(m_Shi.getText().toString(),FunctionHelper.city1);
-        tmpsb.append("ddlStuAddressCCode="+m_Selshi+"&");
-
         if(m_Xian.getText().length()<=0||m_Xian.getText().equals("－请选择－")) {
             Toast.makeText(NowAddrActivity.this,"请选择县/区",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlStuAddressA="+m_Xian.getText()+"&");
-        tmpsb.append("ddlStuAddressACode="+m_Selxian+"&");
-
-        tmpsb.append("ddlRoadName="+m_Jiedao.getText()+"&");
-        // TODO: 16/4/20
-        tmpsb.append("ddlRoadNameCode="+m_Seljiedoa+"&");
-
-        tmpsb.append("nbxDoorplateNum="+m_Etmenpaihao.getText()+"&");
-
-        tmpsb.append("ddlDoorplateMarkNum="+m_Fuhao.getText()+"&");
-        tmpsb.append("ddlDoorplateMarkNumCode="+m_Selfuhao+"&");
-
-        tmpsb.append("nbxTowerNum="+m_Etlouhao.getText()+"&");
-
-        tmpsb.append("nbxDanYuanNum="+m_Etdanyuan.getText()+"&");
-
-        tmpsb.append("nbxHuNum="+m_Ethuhaom.getText()+"&");
-
-        FunctionHelper.sendSB.append(tmpsb);
         return 0 ;
     }
 }

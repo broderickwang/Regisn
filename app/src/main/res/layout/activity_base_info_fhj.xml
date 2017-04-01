@@ -160,7 +160,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="身份证-I"/>
             <TextView
                 android:layout_width="0dp"
                 android:gravity="center"

@@ -137,7 +137,6 @@ public class HujidiActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View view) {
                 View view1 = HujidiActivity.this.getWindow().getDecorView();
                 List<View> list = OutPut.setOutMap(OutPut.getAllChildViews(view1));
-                setValue();
                 Intent intent = new Intent(HujidiActivity.this,NowAddrActivity.class);
                 intent.putExtra("type","FHJ");
                 startActivity(intent);
@@ -151,32 +150,5 @@ public class HujidiActivity extends AppCompatActivity implements View.OnClickLis
         m_Xian.setOnClickListener(this);
 
 
-    }
-    private int setValue(){
-        StringBuffer tmpsb = new StringBuffer();
-        
-        tmpsb.append("ddlRegPlaceType="+m_Hukouxingzhi.getText()+"&");
-        mSelhukouxingzhi = Utils.getCode(m_Hukouxingzhi.getText().toString(),FunctionHelper.hukouxingzhiList);
-        tmpsb.append("ddlRegPlaceTypeCode="+mSelhukouxingzhi);
-
-        tmpsb.append("ddlPeopleType="+m_Liudongrenkouzhuangkuang.getText()+"&");
-        mSelliudongrenkouzhuangkuang = Utils.getCode(m_Liudongrenkouzhuangkuang.getText().toString(),FunctionHelper.liudongrenkouList);
-        tmpsb.append("ddlPeopleTypeCode="+mSelliudongrenkouzhuangkuang+"&");
-
-        tmpsb.append("ddlRegPlaceP="+m_Sheng.getText()+"&");
-        mSelsheng=Utils.getCode(m_Sheng.getText().toString(),FunctionHelper.provinces);
-        tmpsb.append("ddlRegPlacePCode="+mSelsheng+"&");
-
-        tmpsb.append("ddlRegPlaceC="+m_Shi.getText()+"&");
-        mSelshi = Utils.getCode(m_Shi.getText().toString(),FunctionHelper.city1);
-        tmpsb.append("ddlRegPlaceCCode="+mSelshi);
-
-        tmpsb.append("ddlRegPlaceA="+m_Xian.getText()+"&");
-        mSelxian = Utils.getCode(m_Xian.getText().toString(),FunctionHelper.country);
-        tmpsb.append("ddlRegPlaceACode="+mSelxian+"&");
-
-        FunctionHelper.sendSB.append(tmpsb);
-        //// TODO: 16/4/20  xian
-        return 0;
     }
 }

@@ -21,7 +21,7 @@ public class BackService extends Service {
 	private MyBinder mBinder = new MyBinder();
 
 	public class MyBinder extends Binder {
-		BackService getService() {
+		public BackService getService() {
 			return BackService.this;
 		}
 	}
@@ -37,7 +37,8 @@ public class BackService extends Service {
 		new ServerCitiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		new ServerQDCountiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		new ServerJiedaoAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-		new PCAAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
 		FunctionHelper.hujidiisequaltonow.add(new InfoBean("1","是-y",""));
 		FunctionHelper.hujidiisequaltonow.add(new InfoBean("0","否-n",""));
 		FunctionHelper.zongList.add(new InfoBean("1","是-y",""));

@@ -79,49 +79,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 menuWindow = new SelectPicPopupWindow(MainActivity.this,itemsOnClick);
                 menuWindow.showAtLocation(MainActivity.this.findViewById(R.id.main), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0); //设置layout在PopupWindow中显示的位置
-
-
-//                this.dlg = new AlertDialog.Builder(MainActivity.this).create();
-//                View localView = MainActivity.this.getLayoutInflater().inflate(R.layout.clearpan,null);
-//                localView.setAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.slide_bottom_to_top));
-////                localView.getBackground().setAlpha(100);
-//
-//                Window localWindow = this.dlg.getWindow();
-//                WindowManager.LayoutParams lp = localWindow.getAttributes();
-//                this.dlg.show();
-//                lp.alpha = 0.7f;
-//
-//                localWindow.setContentView(localView);
-//                localWindow.setGravity(Gravity.BOTTOM);
-//
-//                localWindow.setLayout(-1,400);
-//
-//                this.hj = (Button)this.dlg.findViewById(R.id.cp_hj);
-//                this.fhj = (Button)this.dlg.findViewById(R.id.cp_fhj);
-//                this.cancle = (Button)this.dlg.findViewById(R.id.cp_cancle);
-//
-//                this.hj.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dlg.cancel();
-//                        intent = new Intent(MainActivity.this,BaseInfoHJActivity.class);
-//                        startActivity(intent);
-//                    }
-//                });
-//                this.fhj.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        intent = new Intent(MainActivity.this,BaseInfoFHJActivity.class);
-//                        startActivity(intent);
-//                        dlg.cancel();
-//                    }
-//                });
-//                this.cancle.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dlg.cancel();
-//                    }
-//                });
             }
         });
 

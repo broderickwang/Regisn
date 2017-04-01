@@ -55,14 +55,10 @@ public class Utils {
     //初始化选择器的数据
     public static String initPickViewData(final TextView tv, String str, OptionsPickerView pickerView,
                                         final ArrayList<InfoBean> list,final View m_Masker) {
-//        InitData.loadProvices(options1Items,options2Items,options3Items);
-//        pickerView.setPicker(options1Items,options2Items,options3Items,true);
-//        static int ti1;
         pickerView.setPicker(list);
         pickerView.setCancelable(true);
 
         pickerView.setCyclic(false);
-//        pickerView.setTitle(str);
         pickerView.setSelectOptions(0, 0, 0);
 
         pickerView.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
@@ -76,9 +72,27 @@ public class Utils {
         });
         return "";
     }
+    public static String initPickViewDataDefault(final TextView tv, String str, OptionsPickerView pickerView,
+                                                 final ArrayList<InfoBean> list,final View m_Masker,int defaultOptions){
+        pickerView.setPicker(list);
+        pickerView.setCancelable(true);
+
+        pickerView.setCyclic(false);
+        pickerView.setSelectOptions(defaultOptions, 0, 0);
+
+        pickerView.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3) {
+                String tx = list.get(options1).getText();
+                result = options1+1;
+                tv.setText(tx);
+                m_Masker.setVisibility(View.GONE);
+            }
+        });
+        return "";
+    }
+
     public static void initTimePickViewData(TimePickerView m_TimePicker,final TextView textView){
-//        m_TimePicker = new TimePickerView(context, TimePickerView.Type.YEAR_MONTH_DAY);
-//        m_TimePicker.setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR));
         m_TimePicker.setTime(new Date());
         m_TimePicker.setCyclic(false);
         m_TimePicker.setCancelable(true);
@@ -122,7 +136,6 @@ public class Utils {
         return result;
     }
     public static void getKeyValueByView(ViewGroup loginLayout){
-        //RelativeLayout loginLayout = (RelativeLayout) getLayoutInflater().inflate(R.layout.activity_main, null);
 
         for (int i = 0; i < loginLayout.getChildCount(); i++) {
             View v=loginLayout.getChildAt(i);

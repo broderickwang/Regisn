@@ -198,49 +198,7 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
         m_Gonguodanwei.setOnClickListener(this);
         m_Shifoujianhuaren.setOnClickListener(this);
     }
-    private int setValue(){
-        StringBuffer tmpsb = new StringBuffer();
-        tmpsb.append("ddlRelation2="+m_Yuertongguanxi.getText()+"&");
-        m_Selyuertonguanxi = Utils.getCode(m_Yuertongguanxi.getText().toString(),FunctionHelper.yuertongguanxi);
-        tmpsb.append("ddlRelation2Code="+m_Selyuertonguanxi+"&");
 
-        tmpsb.append("tbxName2="+m_Etxingming.getText()+"&");
-
-
-        tmpsb.append("ddlSex2="+m_Sex.getText()+"&");
-        m_Selsex = Utils.getCode(m_Sex.getText().toString(),FunctionHelper.sexList);
-        tmpsb.append("ddlSex2Code="+m_Selsex+"&");
-
-        tmpsb.append("ddlNation2="+m_Guobie.getText()+"&");
-        m_Selguobie = Utils.getCode(m_Guobie.getText().toString(),FunctionHelper.guobie);
-        tmpsb.append("ddlNation2Code="+m_Selguobie+"&");
-
-        tmpsb.append("ddlIfGuardian2="+m_Shifoujianhuaren.getText()+"&");
-        m_Selshifoujianhuaren = Utils.getCode(m_Shifoujianhuaren.getText().toString(),FunctionHelper.shifoujianhuaren);
-        tmpsb.append("ddlIfGuardian2Code="+m_Selshifoujianhuaren+"&");
-
-        tmpsb.append("tbxIDCard2="+m_Etsfzhaoma.getText()+"&");
-
-        tmpsb.append("tbxAddress2="+m_Etlianxidizhi.getText()+"&");
-
-        tmpsb.append("ddlStudy2="+m_Wenhuachengdu.getText()+"&");
-        m_Selwenhuachengdu = Utils.getCode(m_Wenhuachengdu.getText().toString(),FunctionHelper.wenhuachengdu);
-        tmpsb.append("ddlStudy2Code="+m_Selwenhuachengdu+"&");
-
-        tmpsb.append("ddlPolitical2="+m_Zhengzhimianmao.getText()+"&");
-        m_Selzhengzhimianmao = Utils.getCode(m_Zhengzhimianmao.getText().toString(),FunctionHelper.zhengzhimianmao);
-        tmpsb.append("ddlPolitical2Code="+m_Selzhengzhimianmao+"&");
-
-        tmpsb.append("tbxPhone2="+m_Etlianxidianhua.getText()+"&");
-        tmpsb.append("tbxZipCode2="+m_Etyoubian.getText()+"&");
-
-        tmpsb.append("ddlJobCategory2="+m_Gonguodanwei.getText()+"&");
-        m_Selgongzuodanwei = Utils.getCode(m_Gonguodanwei.getText().toString(),FunctionHelper.gongzuoxingzhi);
-        tmpsb.append("ddlJobCategory2Code="+m_Selgongzuodanwei+"&");
-
-        FunctionHelper.sendSB.append(tmpsb);
-        return 0;
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){

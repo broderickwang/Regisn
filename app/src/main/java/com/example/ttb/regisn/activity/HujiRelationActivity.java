@@ -156,52 +156,22 @@ public class HujiRelationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private int setValue(){
-        
-        StringBuffer tmpsb = new StringBuffer();
-        
         if(m_Hukouxingzhi.getText().length()<=0||m_Hukouxingzhi.getText().equals("－请选择－")) {
             Toast.makeText(HujiRelationActivity.this,"请选择户口性质",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlRegPlaceType="+m_Hukouxingzhi.getText()+"&");
-        m_Selhkxz = Utils.getCode(m_Hukouxingzhi.getText().toString(),FunctionHelper.hukouxingzhiList);
-        tmpsb.append("ddlRegPlaceTypeCode"+m_Selhkxz+"&");
-
         if(m_Liudongrenkou.getText().length()<=0||m_Liudongrenkou.getText().equals("－请选择－")) {
             Toast.makeText(HujiRelationActivity.this,"请选择流动人口状况",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlPeopleType="+m_Liudongrenkou.getText()+"&");
-        m_Selldrk = Utils.getCode(m_Liudongrenkou.getText().toString(),FunctionHelper.liudongrenkouList);
-        tmpsb.append("ddlPeopleTypeCode"+m_Selldrk+"&");
-
         if(m_Ethzxm.getText().length()<=0||m_Ethzxm.getText().equals("－请选择－")) {
             Toast.makeText(HujiRelationActivity.this,"请填写户主姓名",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("tbxHuZhuName="+m_Ethzxm.getText()+"&");
-
-        if(m_Etqt.getText().equals(""))
-            tmpsb.append("ddlHuZhuGuanXi="+m_Owner2child.getText()+"&");
-        else
-            tmpsb.append("ddlHuZhuGuanXi="+m_Etqt.getText()+"&");
-
-        String[] times = m_Hujiintime.getText().toString().split("-");
-
-        tmpsb.append("tbxHuJiQianRuTime_Y"+times[0]+"&");
-        tmpsb.append("ddlHuJiQianRuTime_M"+times[1]+"&");
-        tmpsb.append("ddlHuJiQianRuTime_D"+times[2]+"&");
-
         if(m_Hujiditype.getText().length()<=0||m_Hujiditype.getText().equals("－请选择－")) {
             Toast.makeText(HujiRelationActivity.this,"请选择户籍地产权类型",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlHuJiDiChanQuanType="+m_Hujiditype.getText()+"&");
-        m_Selcqlx = Utils.getCode(m_Hujiditype.getText().toString(),FunctionHelper.hujidichanquantypeList);
-        tmpsb.append("ddlHuJiDiChanQuanTypeCode="+m_Selcqlx+"&");
-
-        FunctionHelper.sendSB.append(tmpsb);
-
         return 0;
     }
 }

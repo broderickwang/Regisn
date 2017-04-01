@@ -254,8 +254,6 @@ public class BaseInfoHJActivity extends AppCompatActivity implements View.OnClic
                 }
                 View view1 = this.getWindow().getDecorView();
                 List<View> list = OutPut.setOutMap(OutPut.getAllChildViews(view1));
-                //setOut();
-                setSendMap();
                 int i = setValue();
                 if(i<0)
                     return;
@@ -271,34 +269,21 @@ public class BaseInfoHJActivity extends AppCompatActivity implements View.OnClic
         }
     }
     private int setValue(){
-        StringBuffer tmpsb = new StringBuffer();
         //ertongxingming
         if(m_EtName.getText().length()<=0||m_EtName.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写儿童姓名",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("tbxStuName="+m_EtName.getText()+"&");
-        FunctionHelper.sendTable.put(m_EtName.getTag(),m_EtName.getText());
-
         //shengfenzhengleixing
         if(m_SFZType.getText().length()<=0||m_SFZType.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写身份证类型",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlStuCardType＝"+m_SFZType.getText()+"&");
-        m_Selsfzlx = Utils.getCode(m_SFZType.getText().toString(),FunctionHelper.shenfenzhengList);
-        tmpsb.append("ddlStuCardTypeCode="+m_Selsfzlx+"&");
-//        new ServerInsertAsynTask().execute();
         //chushengdi
         String a = m_Chushengdi.getText().toString();
         String[] addrs = a.split("-");
         if(addrs.length<1){
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写出生地",Toast.LENGTH_SHORT).show();
-        }else if(addrs.length == 3) {
-            tmpsb.append("ddlBirthPlaceP=" + addrs[0] + "&" +
-                    "ddlBirthPlaceC=" + addrs[1] + "&" + "ddlBirthPlaceA=" + "" + "&");
-            tmpsb.append("ddlBirthPlacePCode=" + addrs[0] + "&" +
-                    "ddlBirthPlaceCCode=" + addrs[1] + "&" + "ddlBirthPlaceACode=" + "" + "&");
         }
         //jiguan
         String b = m_Jiguan.getText().toString();
@@ -307,84 +292,45 @@ public class BaseInfoHJActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写籍贯",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        if(ads.length == 3) {
-            tmpsb.append("ddlNativePlaceP=" + ads[0] + "&" +
-                    "ddlNativePlaceC=" + ads[1] + "&" + "ddlNativePlaceA=" + "" + "&");
-            tmpsb.append("ddlNativePlacePCode=" + ads[0] + "&" +
-                    "ddlNativePlaceCCode=" + ads[1] + "&" + "ddlNativePlaceACode=" + "" + "&");
-        }
-        //cengyongming
-        tmpsb.append("tbxOldName＝"+m_EtCym.getText()+"&");
 
         if(m_EtZjh.getText().length()<=0||m_EtZjh.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写证件号",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        //zhengjianhao
-        tmpsb.append("tbxStuCardNo＝"+m_EtZjh.getText()+"&");
+
         //xingbie
         if(m_Sex.getText().length()<=0||m_Sex.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写性别",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlStuSex＝"+m_Sex.getText()+"&");
-        m_Selxb = Utils.getCode(m_Sex.getText().toString(),FunctionHelper.sexList);
-        tmpsb.append("ddlStuSexCode="+m_Selxb+"&");
         //chushengriqi
         String[] rz = m_Birthday.getText().toString().split("-");
         if(rz.length <= 1){
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写出生日期",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlBirthDayY="+rz[0]+"&");
-        tmpsb.append("ddlBirthDayM="+rz[1]+"&");
-        tmpsb.append("ddlBirthDayD="+rz[2]+"&");
         //minzu
         if(m_Minzu.getText().length()<=0||m_Minzu.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写民族",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlEthnic＝"+m_Minzu.getText()+"&");
-        m_Selmz = Utils.getCode(m_Minzu.getText().toString(),FunctionHelper.minzuList);
-        tmpsb.append("ddlEthnicCode="+m_Selmz+"&");
-        //minzuyuyan
-//        if(m_Language.getText().length()<=0||m_Language.getText().equals("－请选择－")) {
-//            Toast.makeText(BaseInfoHJActivity.this,"请正确填写民族语言",Toast.LENGTH_SHORT).show();
-//            return -1;
-//        }
-        tmpsb.append("ddlEthnicLanguage="+m_Language.getText()+"&");
-        m_Selmzyy = Utils.getCode(m_Language.getText().toString(),FunctionHelper.languageList);
-        tmpsb.append("ddlEthnicLanguageCode="+m_Selmzyy+"&");
-        //zongjiaoxinyang
-        tmpsb.append("tbxReligious="+m_Etzj.getText()+"&");
+
         //jiankangzhuangk
         if(m_Health.getText().length()<=0||m_Health.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoHJActivity.this,"请正确填写健康状况",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlHealth＝"+m_Health.getText()+"&");
-        m_Seljkzk = Utils.getCode(m_Health.getText().toString(),FunctionHelper.healthList);
-        tmpsb.append("ddlHealthCode="+m_Seljkzk+"&");
+
         //mima
         if(m_Etpwd.getText().length()<=0||m_Etpwd.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoHJActivity.this,"请正确设置登录密码",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("tbxStuPwd＝"+m_Etpwd.getText()+"&");
-
-        FunctionHelper.sendSB.append(tmpsb);
         return 0;
     }
     public static String getTime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);
     }
-    private void setSendMap(){
-        ViewGroup  vg = (ViewGroup)getLayoutInflater().inflate(R.layout.activity_base_info_hj, null);
-        LinearLayout layout = (LinearLayout)vg.findViewById(R.id.hjb);
-        Utils.getKeyValueByView(layout);
-    }
-
-
 
 }

@@ -31,7 +31,6 @@ public class BaseInfoFHJActivity extends AppCompatActivity implements View.OnCli
     private Button next;
     private boolean isSFZ;
     private View m_Masker;
-//    private TextView m_Jiguan,m_Birthday,m_Minzu,m_SFZType,m_Sex,m_Language,m_Health,m_Chushengdi;
     private OptionsPickerView m_OptionJiGuan, m_OptionMenu;
     private TimePickerView m_TimePicker;
     private EditText m_Etertongxingming,m_Etcengyongming,m_Etzhengjiaohao,m_Etzongjiaoxinyang,m_Etdenglumima;
@@ -48,7 +47,6 @@ public class BaseInfoFHJActivity extends AppCompatActivity implements View.OnCli
         FunctionHelper.isHjchild = false;
 
         if(FunctionHelper.isModify){
-//            Utils.setString2InMap(FunctionHelper.testStr);
             View view1 = this.getWindow().getDecorView();
             //获取所有的tag控件 并赋值
             Utils.setValue2TagKJInParentView(view1);
@@ -267,20 +265,13 @@ public class BaseInfoFHJActivity extends AppCompatActivity implements View.OnCli
         m_Guobie.setOnClickListener(this);
     }
     private int setValue(){
-        StringBuffer tmpsb = new StringBuffer();
         //ertongxingming
-        tmpsb.append("tbxStuName="+m_Etertongxingming.getText()+"&");
-        FunctionHelper.sendTable.put("tbxStuName",m_Etertongxingming.getText());
         if(m_Etertongxingming.getText().length()<=0||m_Etertongxingming.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoFHJActivity.this,"请正确填写儿童姓名",Toast.LENGTH_SHORT).show();
             return -1;
         }
         //shengfenzhengleixing
-        tmpsb.append("ddlStuCardType＝"+m_Shenfenzhengleixing.getText()+"&");
-        FunctionHelper.sendTable.put("ddlStuCardType",m_Shenfenzhengleixing.getText());
         mSelshengfenzhengleixing = Utils.getCode(m_Shenfenzhengleixing.getText().toString(),FunctionHelper.shenfenzhengList);
-        FunctionHelper.sendTable.put("ddlStuCardTypeCode",mSelshengfenzhengleixing);
-        tmpsb.append("ddlStuCardTypeCode="+mSelshengfenzhengleixing+"&");
         if(m_Shenfenzhengleixing.getText().length()<=0||m_Shenfenzhengleixing.getText().equals("－请选择－")) {
             Toast.makeText(BaseInfoFHJActivity.this,"请正确选择身份证类型",Toast.LENGTH_SHORT).show();
             return -1;
@@ -299,78 +290,15 @@ public class BaseInfoFHJActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(BaseInfoFHJActivity.this,"请正确填写籍贯",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        //cengyongming
-        FunctionHelper.sendTable.put("tbxOldName",m_Etcengyongming.getText());
-        tmpsb.append("tbxOldName＝"+m_Etcengyongming.getText()+"&");
 
-        //zhengjianhao
-        FunctionHelper.sendTable.put("tbxStuCardNo",m_Etzhengjiaohao.getText());
-        tmpsb.append("tbxStuCardNo＝"+m_Etzhengjiaohao.getText()+"&");
-        //xingbie
-        FunctionHelper.sendTable.put("ddlStuSex",m_Xingbie.getText());
-        tmpsb.append("ddlStuSex＝"+m_Xingbie.getText()+"&");
         mSelxingbie = Utils.getCode(m_Xingbie.getText().toString(),FunctionHelper.sexList);
-        FunctionHelper.sendTable.put("ddlStuSexCode",mSelxingbie);
-        tmpsb.append("ddlStuSexCode="+mSelxingbie+"&");
         //chushengriqi
         String[] rz = m_Chushengriqi.getText().toString().split("-");
         if(rz.length < 1){
             Toast.makeText(BaseInfoFHJActivity.this,"请正确填写出生日期",Toast.LENGTH_SHORT).show();
             return -1;
         }
-        tmpsb.append("ddlBirthDayY="+rz[0]+"&");
-        tmpsb.append("ddlBirthDayM="+rz[1]+"&");
-        tmpsb.append("ddlBirthDayD="+rz[2]+"&");
-        //minzu
-        tmpsb.append("ddlEthnic＝"+m_Minzu.getText()+"&");
-        FunctionHelper.sendTable.put("ddlEthnic",m_Minzu.getText());
-        mSelminzu = Utils.getCode(m_Minzu.getText().toString(),FunctionHelper.minzuList);
-        FunctionHelper.sendTable.put("ddlEthnicCode",mSelminzu);
-        tmpsb.append("ddlEthnicCode="+mSelminzu+"&");
-        //minzuyuyan
-        tmpsb.append("ddlEthnicLanguage="+m_Minzuyuyan.getText()+"&");
-        FunctionHelper.sendTable.put("ddlEthnicLanguage",m_Minzuyuyan.getText());
-        mSelminzuyuyan = Utils.getCode(m_Minzuyuyan.getText().toString(),FunctionHelper.languageList);
-        FunctionHelper.sendTable.put("ddlEthnicLanguageCode",mSelminzuyuyan);
-        tmpsb.append("ddlEthnicLanguageCode="+mSelminzuyuyan+"&");
-        //zongjiaoxinyang
-        tmpsb.append("tbxReligious="+m_Etzongjiaoxinyang.getText()+"&");
-        FunctionHelper.sendTable.put("tbxReligious",m_Etzongjiaoxinyang.getText());
-        //jiankangzhuangk
-        tmpsb.append("ddlHealth＝"+m_Jiankangzhuangk.getText()+"&");
-        FunctionHelper.sendTable.put("ddlHealth",m_Jiankangzhuangk.getText());
-        mSeljiankangzhuangk = Utils.getCode(m_Jiankangzhuangk.getText().toString(),FunctionHelper.healthList);
-        tmpsb.append("ddlHealthCode="+mSeljiankangzhuangk+"&");
-        FunctionHelper.sendTable.put("ddlHealthCode",mSeljiankangzhuangk);
-        //mima
-        tmpsb.append("tbxStuPwd＝"+m_Etdenglumima.getText()+"&");
-        FunctionHelper.sendTable.put("tbxStuPwd",m_Etdenglumima.getText());
 
-        //guobie
-        tmpsb.append("ddlNation="+m_Guobie.getText()+"&");
-        FunctionHelper.sendTable.put("ddlNation",m_Guobie.getText());
-        mSelguobie = Utils.getCode(m_Guobie.getText().toString(),FunctionHelper.guobie);
-        tmpsb.append("ddlNationCode="+mSelguobie);
-        FunctionHelper.sendTable.put("ddlNationCode",mSelguobie);
-        //gangaotiaqiao
-        tmpsb.append("ddlHKMType="+m_Gangaotiaiqiao.getText()+"&");
-        FunctionHelper.sendTable.put("ddlHKMType",m_Gangaotiaiqiao.getText());
-        mSelgangaotaiqiao = Utils.getCode(m_Gangaotiaiqiao.getText().toString(),FunctionHelper.gangaotaiqiao);
-        tmpsb.append("ddlHKMTypeCode="+mSelgangaotaiqiao+"&");
-        FunctionHelper.sendTable.put("ddlHKMTypeCode",mSelgangaotaiqiao);
-
-        FunctionHelper.sendSB.append(tmpsb);
         return 0;
-    }
-    private void setSendMap(){
-        ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.activity_base_info_fhj, null);
-        Utils.getKeyValueByView(layout);
-    }
-    private void setOut(){
-//        private EditText m_Etertongxingming,m_Etcengyongming,m_Etzhengjiaohao,m_Etzongjiaoxinyang,m_Etdenglumima;
-//        private TextView m_Chushengdi,m_Jiguan,m_Shenfenzhengleixing,m_Xingbie,m_Chushengriqi,m_Minzu,m_Minzuyuyan
-//                ,m_Gangaotiaiqiao,m_Jiankangzhuangk,m_Guobie;
-        ArrayList<TextView> al = new ArrayList<>();
-
     }
 }

@@ -142,9 +142,6 @@ public class HouseRelationActivity extends AppCompatActivity implements View.OnC
             public void onClick(View view) {
                 View view1 = HouseRelationActivity.this.getWindow().getDecorView();
                 List<View> list = OutPut.setOutMap(OutPut.getAllChildViews(view1));
-                int i= setValue();
-                if(i<0)
-                    return;
                 Intent intent = new Intent(HouseRelationActivity.this,HomeOneActivity.class);
                 startActivity(intent);
             }
@@ -152,48 +149,5 @@ public class HouseRelationActivity extends AppCompatActivity implements View.OnC
 
 //        m_Time.setOnClickListener(this);
         m_Suoyou2et.setOnClickListener(this);
-    }
-    private int setValue(){
-        
-        StringBuffer tmpsb = new StringBuffer();
-
-//        if(m_Etnum.getText().length()<=0||m_Etnum.getText().equals("－请选择－")) {
-//            Toast.makeText(HouseRelationActivity.this,"请填写房产证编号",Toast.LENGTH_SHORT).show();
-//            return -1;
-//        }
-        tmpsb.append("tbxCqrFangChanZhenHao="+m_Etnum.getText()+"&");
-//        String[] as = m_Time.getText().toString().split("-");
-//        if(as.length<=1)
-//            return -1;
-//        tmpsb.append("tbxCqrFangChanZhenTime_Y="+as[0]+"&");
-//        tmpsb.append("ddlCqrFangChanZhenTime_M="+as[1]+"&");
-//        tmpsb.append("ddlCqrFangChanZhenTime_D="+as[2]+"&");
-
-//        if(m_Etchanquanren.getText().length()<=0||m_Etchanquanren.getText().equals("－请选择－")) {
-//            Toast.makeText(HouseRelationActivity.this,"请填写产权人/承租人",Toast.LENGTH_SHORT).show();
-//            return -1;
-//        }
-        tmpsb.append("tbxCqrName="+m_Etchanquanren.getText()+"&");
-//        if(m_Etsfnum.getText().length()<=0||m_Etsfnum.getText().equals("－请选择－")) {
-//            Toast.makeText(HouseRelationActivity.this,"请填写产权人身份证号",Toast.LENGTH_SHORT).show();
-//            return -1;
-//        }
-        tmpsb.append("tbxCqrIDCard="+m_Etsfnum.getText()+"&");
-//        if(m_Etchuan2huzhu.getText().length()<=0||m_Etchuan2huzhu.getText().equals("－请选择－")) {
-//            Toast.makeText(HouseRelationActivity.this,"请填写所有人与户主关系",Toast.LENGTH_SHORT).show();
-//            return -1;
-//        }
-        tmpsb.append("tbxCqrHuZhuGuanXi="+ m_Etchuan2huzhu.getText()+"&");
-
-//        if(m_Suoyou2et.getText().length()<=0||m_Suoyou2et.getText().equals("－请选择－")) {
-//            Toast.makeText(HouseRelationActivity.this,"请选择所有人与儿童关系",Toast.LENGTH_SHORT).show();
-//            return -1;
-//        }
-        tmpsb.append("ddlCqrStuGuanxi="+m_Suoyou2et.getText()+"&");
-        m_Selsuoyou2et = Utils.getCode(m_Suoyou2et.getText().toString(),FunctionHelper.fangchanowner2childList);
-        tmpsb.append("ddlCqrStuGuanxiCode="+m_Selsuoyou2et+"&");
-
-        FunctionHelper.sendSB.append(tmpsb);
-        return 0 ;
     }
 }
