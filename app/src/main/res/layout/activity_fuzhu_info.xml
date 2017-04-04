@@ -35,7 +35,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="独生子女-0"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -67,7 +67,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="是-y"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -101,7 +101,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="英语-en"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -134,7 +134,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="步行-1"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

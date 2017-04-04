@@ -77,7 +77,7 @@
                     android:layout_marginBottom="@dimen/editbig2"
                     android:background="@drawable/bg_tv"
                     android:gravity="center"
-                    android:text="－请选择－"/>
+                    android:text="山东省-青岛市-市北区"/>
                 <TextView
                     android:layout_width="0dp"
                     android:gravity="center"
@@ -111,7 +111,7 @@
                     android:layout_marginBottom="@dimen/editbig2"
                     android:background="@drawable/bg_tv"
                     android:gravity="center"
-                    android:text="－请选择－"/>
+                    android:text="山东省-青岛市-市北区"/>
                 <TextView
                     android:layout_width="0dp"
                     android:gravity="center"
@@ -293,18 +293,20 @@
                     android:textColor="@color/textcolor"
                     android:paddingLeft="16dp"
                     android:text="民族："/>
+
                 <TextView
                     android:id="@+id/minzu"
-                    android:tag="ddlEthnic"
                     android:layout_width="0dp"
-                    android:layout_weight="3"
-                    android:drawableRight="@drawable/ep"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/editbig2"
                     android:layout_marginBottom="@dimen/editbig2"
+                    android:layout_marginTop="@dimen/editbig2"
+                    android:layout_weight="3"
                     android:background="@drawable/bg_tv"
+                    android:drawableRight="@drawable/ep"
                     android:gravity="center"
-                    android:text="－请选择－"/>
+                    android:tag="ddlEthnic"
+                    android:text="汉族-0" />
+
                 <TextView
                     android:layout_width="0dp"
                     android:gravity="center"
@@ -366,7 +368,7 @@
                     android:layout_marginBottom="@dimen/editbig2"
                     android:background="@drawable/bg_tv"
                     android:gravity="center"
-                    android:text="－请选择－"/>
+                    android:text="汉语(中文)"/>
                 <TextView
                     android:layout_width="0dp"
                     android:gravity="center"
@@ -426,7 +428,7 @@
                     android:layout_marginBottom="@dimen/editbig2"
                     android:background="@drawable/bg_tv"
                     android:gravity="center"
-                    android:text="－请选择－"/>
+                    android:text="健康或良好-10"/>
                 <TextView
                     android:layout_width="0dp"
                     android:gravity="center"

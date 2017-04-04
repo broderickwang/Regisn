@@ -68,7 +68,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="山东省-青岛市-市北区"/>
             <TextView
                 android:layout_width="0dp"
                 android:gravity="center"
@@ -99,7 +99,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="山东省-青岛市-市北区"/>
             <TextView
                 android:layout_width="0dp"
                 android:gravity="center"
@@ -289,7 +289,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="汉族-01"/>
             <TextView
                 android:layout_width="0dp"
                 android:gravity="center"
@@ -321,7 +321,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="汉语(中文)"/>
             <TextView
                 android:layout_width="0dp"
                 android:gravity="center"
@@ -379,7 +379,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="无-0"/>
             <TextView
                 android:layout_width="0dp"
                 android:gravity="center"
@@ -411,7 +411,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="健康或良好-10"/>
             <TextView
                 android:layout_width="0dp"
                 android:gravity="center"
@@ -442,7 +442,7 @@
                 android:layout_marginBottom="@dimen/editbig2"
                 android:background="@drawable/bg_tv"
                 android:gravity="center"
-                android:text="－请选择－"/>
+                android:text="中国-156"/>
             <TextView
                 android:layout_width="0dp"
                 android:gravity="center"
