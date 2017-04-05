@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Created by ttb on 16/4/18.
@@ -61,6 +62,8 @@ public class FunctionHelper {
     public static ArrayList<String> province1 = new ArrayList<>();
 
     public static ArrayList<InfoBean> city1 = new ArrayList<>();
+
+    public static Map<String ,ArrayList<InfoBean>> country0405 = new HashMap<>();
 
     public static ArrayList<String> county1 = new ArrayList<>();
 

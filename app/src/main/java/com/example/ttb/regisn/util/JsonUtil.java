@@ -1,5 +1,6 @@
 package com.example.ttb.regisn.util;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.ttb.regisn.bean.BaseInfo;
@@ -75,9 +76,11 @@ public class JsonUtil {
             }
 
         }
-    }public static void JsonInfoCounty(JSONArray jsonArray){
+    }
+    public static void JsonInfoCounty(String city,JSONArray jsonArray){
         FunctionHelper.country.clear();
         int icount = jsonArray.length();
+        ArrayList<InfoBean> putInfos = new ArrayList<>();
         for(int i=0;i<icount;i++){
             JSONObject jsonObject = null;
             try {
@@ -85,11 +88,12 @@ public class JsonUtil {
                 InfoBean infoBean = new InfoBean(jsonObject.getString("code"),
                         jsonObject.getString("text"),"");
                 FunctionHelper.country.add(infoBean);
+                putInfos.add(infoBean);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
+        FunctionHelper.country0405.put(city,putInfos);
     }
     public static void JsonInfoQDCounty(JSONArray jsonArray){
         FunctionHelper.country.clear();
@@ -134,6 +138,7 @@ public class JsonUtil {
                 cities.add(jsonObject.getString("text"));
                 FunctionHelper.city1.add(new InfoBean("i",jsonObject.getString("text"),""));
 
+                new ServerCountiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,jsonObject.getString("text"));
 //                InfoBean infoBean = new InfoBean(jsonObject.getString("code"),
 //                        jsonObject.getString("text"),jsonObject.getString("category"));
 //                FunctionHelper.provinces.add(infoBean);

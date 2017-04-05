@@ -34,7 +34,7 @@ public class ServerCountiesAsynTask extends AsyncTask {
                 result = EntityUtils.toString(hr.getEntity());
                 Log.i(TAG,"result = "+result);
                 JSONArray ja1 = new JSONArray(result);
-                JsonUtil.JsonInfoCounty(ja1);
+                JsonUtil.JsonInfoCounty((String)objects[0],ja1);
             }
             //关闭连接
             if(hc != null){

@@ -107,8 +107,9 @@ public class HujidiActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.hujidixian:
                 if(m_Shi.getText().length() > 0 && !m_Shi.getText().equals("－请选择－") && !m_Shi.getText().equals("-")){
 //                    new ServerCountiesAsynTask().execute(m_Shi.getText());
-                    new ServerCountiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,m_Shi.getText());
-                    Utils.initPickViewData(m_Xian,"请选择身份证类型",m_OptionMenu, FunctionHelper.country,m_Masker);
+//                    new ServerCountiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,m_Shi.getText());
+//                    Utils.initPickViewData(m_Xian,"请选择身份证类型",m_OptionMenu, FunctionHelper.country,m_Masker);
+                    Utils.initPickViewData(m_Xian,"请选择身份证类型",m_OptionMenu,FunctionHelper.country0405.get(m_Shi.getText()),m_Masker);
                     m_OptionMenu.show();
                 }else{
                     m_Xian.setText("-");
