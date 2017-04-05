@@ -34,7 +34,6 @@ public class MyServerAsynTask extends AsyncTask {
             else{
                 jo.put("error",objects[0]);
             }
-            Log.i(TAG,"params:"+jo.toString());
 
             hp.setEntity(new StringEntity(jo.toString()));
             HttpResponse hr = hc.execute(hp);
@@ -43,10 +42,6 @@ public class MyServerAsynTask extends AsyncTask {
             //获取报文
             if(hr.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(hr.getEntity());
-                Log.i(TAG,"result = "+result);
-                // TODO: 16/4/17  test delete
-                JSONObject jo1 = new JSONObject(result);
-                Log.i("FROM SERVERTOSTRING->",JsonUtil.FromJson2String(jo1));
             }
             //关闭连接
             if(hc != null){

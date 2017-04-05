@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
-import android.util.Log;
 
 import com.example.ttb.regisn.bean.InfoBean;
 import com.example.ttb.regisn.util.FunctionHelper;
@@ -31,7 +30,6 @@ public class BackService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		Log.i(TAG, "onBind: ");
 
 		new ServerProvinceAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		new ServerCitiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -88,18 +86,15 @@ public class BackService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		Log.i(TAG, "onCreate: ");
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.i(TAG, "onDestroy: ");
 	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		Log.i(TAG, "onStartCommand: ");
 		return super.onStartCommand(intent, flags, startId);
 	}
 	private void initTeshuAddr(){

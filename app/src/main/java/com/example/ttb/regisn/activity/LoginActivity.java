@@ -98,34 +98,11 @@ class LoginTask extends AsyncTask{
             //获取报文
             if(hr.getStatusLine().getStatusCode() == 200){
 
-                ///////
-//                HttpEntity entity = hr.getEntity();
-
-                ///////
-
                 result = EntityUtils.toString(hr.getEntity());
 
-                /////////
-//                CookieStore mCookieStore = hc.get
-                /////////
-                Log.i("result = ====",result);
-                //{result:1,msg:'成功!',SessionID:ynsczkklxlib4css5eenlghr}
                 JSONObject jo = new JSONObject(result);
                 String a = jo.getString("StuID");
-//                FunctionHelper.sessionID = jo.getString("SessionID");
                 FunctionHelper.stuID = a;
-
-                    //////
-//                hp = new HttpPost(FunctionHelper.URL_CS +
-//                "?action=GetStuModel&SessionID="+FunctionHelper.sessionID);
-//                hp.setHeader("Cookie", "JSESSIONID=" + FunctionHelper.sessionID);
-//                hr = hc.execute(hp);
-//                if(hr.getStatusLine().getStatusCode() == 200){
-//                    result = EntityUtils.toString(hr.getEntity());
-//                }
-                //////
-
-
 
                 bl = true;
             }
@@ -136,7 +113,6 @@ class LoginTask extends AsyncTask{
             return bl;
         }catch (Exception e){
             e.printStackTrace();
-//            Log.i("ERROR INFO====",e.getMessage());
             return bl;
         }
     }

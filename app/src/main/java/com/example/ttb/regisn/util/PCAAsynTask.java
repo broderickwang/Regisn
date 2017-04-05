@@ -27,7 +27,6 @@ public class PCAAsynTask extends AsyncTask {
             //获取报文
             if(hr.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(hr.getEntity());
-                Log.i("result = ",result);
                 Utils.getPCAData_3j(result);
             }
             //关闭连接
@@ -36,7 +35,6 @@ public class PCAAsynTask extends AsyncTask {
             }
             return result;
         }catch (Exception e){
-            Log.e("PCAAsynTask", "doInBackground: ", e);
             e.printStackTrace();
             return null;
         }

@@ -28,7 +28,6 @@ public class ServerCitiesAsynTask extends AsyncTask {
             //获取报文
             if(hr.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(hr.getEntity());
-                Log.i(TAG,"result = "+result);
                 JSONArray ja1 = new JSONArray(result);
                 JsonUtil.JsonInfoCities(ja1);
             }

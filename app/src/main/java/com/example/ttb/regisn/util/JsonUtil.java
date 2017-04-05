@@ -201,9 +201,6 @@ public class JsonUtil {
     //解析json串
     public static void JsonInfoParser(JSONArray jsonArray){
         int icount = jsonArray.length();
-//        FunctionHelper.zongList = new ArrayList<>();
-//        FunctionHelper.minzuList = new ArrayList<>();
-        Log.i("array count",""+icount);
         for(int i=0;i<icount;i++){
             try {
                 //将JsonObject放到总list中

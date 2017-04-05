@@ -38,7 +38,6 @@ public class ShowInfoAsynTask extends AsyncTask {
 
             HttpPost httpPost = new HttpPost(url);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            String out = Utils.getStringFromOutMap();
             params.add(new BasicNameValuePair("STR", FunctionHelper.sendSB.toString()));
             httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 
@@ -47,7 +46,6 @@ public class ShowInfoAsynTask extends AsyncTask {
             {
                 String result = EntityUtils.toString(httpResponse
                         .getEntity());
-                Log.i("recevied by server----",result);
                 return result;
             }
 

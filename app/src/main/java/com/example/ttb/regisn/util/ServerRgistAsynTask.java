@@ -19,34 +19,14 @@ public class ServerRgistAsynTask extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] objects) {
         HttpClient hc = new DefaultHttpClient();
-//        HttpPost hp = new HttpPost("http://119.167.227.12/sbbm2016service/CJ.ashx?action=GetDictionaryAll");
         HttpPost hp = new HttpPost(FunctionHelper.URL_CS+"?action=GetDictionaryAll");
 
-        JSONObject jo = new JSONObject();
-
         try {
-//            if(objects.length > 1){
-//                jo.put("name",objects[0]);
-//                jo.put("age",objects[1]);
-//
-//            }else if(objects.length == 1){
-//                jo = (JSONObject)objects[0];
-//            }
-//            else{
-//                jo.put("error",objects[0]);
-//            }
-//            Log.i(TAG,"params:"+jo.toString());
-//
-//            hp.setEntity(new StringEntity(jo.toString()));
             HttpResponse hr = hc.execute(hp);
-
             String result = null;
             //获取报文
             if(hr.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(hr.getEntity());
-                Log.i(TAG,"result = "+result);
-                // TODO: 16/4/17  test delete
-//                JSONObject jo1 = new JSONObject(result);
                 JSONArray ja1 = new JSONArray(result);
                 JsonUtil.JsonInfoParser(ja1);
             }

@@ -45,7 +45,6 @@ public class ServerInsertAsynTask extends AsyncTask {
         HttpPost hp = new HttpPost(url);
         HttpResponse httpResponse = null;
 
-
         try {
 
             HttpPost httpPost = new HttpPost(url);
@@ -85,7 +84,6 @@ public class ServerInsertAsynTask extends AsyncTask {
             if (httpResponse.getStatusLine().getStatusCode() == 200)
             {
                 String result = EntityUtils.toString(httpResponse.getEntity());
-                Log.i("recevied by server----",result);
                 JSONObject jo = new JSONObject(result);
                 int r = jo.getInt("result");
                 if(r == 1) {

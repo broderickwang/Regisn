@@ -19,7 +19,6 @@ public class ServerQDCountiesAsynTask extends AsyncTask {
     protected Object doInBackground(Object[] objects) {
 
         HttpClient hc = new DefaultHttpClient();
-//        HttpPost hp = new HttpPost("http://119.167.227.12/sbbm2016service/CJ.ashx?action=GetXianDLL&Shivalue=青岛市");
         HttpPost hp = new HttpPost(FunctionHelper.URL_CS+"?action=GetXianDLL&Shivalue=青岛市");
 
         try {
@@ -29,7 +28,6 @@ public class ServerQDCountiesAsynTask extends AsyncTask {
             //获取报文
             if(hr.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(hr.getEntity());
-                Log.i(TAG,"result = "+result);
                 JSONArray ja1 = new JSONArray(result);
                 JsonUtil.JsonInfoQDCounty(ja1);
             }

@@ -13,33 +13,12 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.ttb.regisn.R;
-import com.example.ttb.regisn.bean.BaseInfo;
-import com.example.ttb.regisn.bean.InfoBean;
 import com.example.ttb.regisn.util.FunctionHelper;
-import com.example.ttb.regisn.util.IDReflect;
-import com.example.ttb.regisn.util.JsonUtil;
-import com.example.ttb.regisn.util.MyServerAsynTask;
-import com.example.ttb.regisn.util.PCAAsynTask;
 import com.example.ttb.regisn.util.ServerAsynTask;
-import com.example.ttb.regisn.util.ServerCitiesAsynTask;
-import com.example.ttb.regisn.util.ServerJiedaoAsynTask;
-import com.example.ttb.regisn.util.ServerProvinceAsynTask;
-import com.example.ttb.regisn.util.ServerQDCountiesAsynTask;
-import com.example.ttb.regisn.util.Utils;
-import com.gc.materialdesign.views.ButtonRectangle;
-
-import org.json.JSONObject;
-
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class WebViewActivity extends AppCompatActivity {
 

@@ -36,35 +36,15 @@ public class ServerAsynTask extends AsyncTask {
         FunctionHelper.fuhao.add(new InfoBean("11","癸",""));
 
         HttpClient hc = new DefaultHttpClient();
-        String URL = "http://111.17.218.35:223/cjservice/CJ.ashx";
-        //HttpPost hp = new HttpPost("http://119.167.227.12/sbbm2016service/CJ.ashx?action=GetDictionaryAll");
         HttpPost hp = new HttpPost(FunctionHelper.URL_CS + "?action=GetDictionaryAll");
 
-        JSONObject jo = new JSONObject();
-
         try {
-//            if(objects.length > 1){
-//                jo.put("name",objects[0]);
-//                jo.put("age",objects[1]);
-//
-//            }else if(objects.length == 1){
-//                jo = (JSONObject)objects[0];
-//            }
-//            else{
-//                jo.put("error",objects[0]);
-//            }
-//            Log.i(TAG,"params:"+jo.toString());
-//
-//            hp.setEntity(new StringEntity(jo.toString()));
             HttpResponse hr = hc.execute(hp);
 
             String result = null;
             //获取报文
             if(hr.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(hr.getEntity());
-                Log.i(TAG,"result = "+result);
-                // TODO: 16/4/17  test delete
-//                JSONObject jo1 = new JSONObject(result);
                 JSONArray ja1 = new JSONArray(result);
                 JsonUtil.JsonInfoParser(ja1);
             }
@@ -75,7 +55,6 @@ public class ServerAsynTask extends AsyncTask {
             return result;
         }catch (Exception e){
             e.printStackTrace();
-//            Utils.showDialog((Context)objects[0],"连接网络失败，请检查网络设置！");
             return null;
         }
     }

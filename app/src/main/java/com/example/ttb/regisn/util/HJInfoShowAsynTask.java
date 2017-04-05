@@ -29,7 +29,6 @@ public class HJInfoShowAsynTask extends AsyncTask {
             //获取报文
             if(hr.getStatusLine().getStatusCode() == 200){
                 result = EntityUtils.toString(hr.getEntity());
-                Log.i("result = ",result);
                 JSONObject jo = new JSONObject(result);
                 FunctionHelper.stuSchool = jo.getString("SchoolName");
                 FunctionHelper.stuTime = jo.getString("STime");

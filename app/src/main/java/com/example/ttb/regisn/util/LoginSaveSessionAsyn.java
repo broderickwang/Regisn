@@ -45,44 +45,6 @@ public class LoginSaveSessionAsyn extends AsyncTask {
             e.printStackTrace();
         }
         return true;
-
-//        HttpPost hp = new HttpPost(FunctionHelper.URL_CS +
-//                "?action=GetStuModel&SessionID="+FunctionHelper.sessionID);
-//        hp.addHeader("Cookie",FunctionHelper.sessionID);
-
-
-
-//        try {
-//            HttpResponse hr = hc.execute(hp);
-//
-//            String result = null;
-//            //获取报文
-//            if(hr.getStatusLine().getStatusCode() == 200){
-//                result = EntityUtils.toString(hr.getEntity());
-//                Log.i("result = ====",result);
-//                //{result:0,msg:当前学生还未登陆系统!}
-//                JSONObject jo = new JSONObject(result);
-//                if(jo.getInt("result") == 0){
-//
-//                }else{
-//                    Utils.setString2InMap(result);
-//                    bl = true;
-//                }
-////                Utils.setString2InMap(FunctionHelper.testStr);
-//                //{result:1,msg:'成功!',SessionID:ynsczkklxlib4css5eenlghr}
-////                JSONObject jo = new JSONObject(result);
-////                String a = jo.getString("SessionID");
-////                FunctionHelper.sessionID = jo.getString("SessionID");
-//            }
-//            //关闭连接
-//            if(hc != null){
-//                hc.getConnectionManager().shutdown();
-//            }
-//            return bl;
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return bl;
-//        }
     }
     public static HttpClient getHttpClient() throws Exception {
         // 创建 HttpParams 以用来设置 HTTP 参数（这一部分不是必需的）
@@ -132,7 +94,6 @@ public class LoginSaveSessionAsyn extends AsyncTask {
         } else {
             strResult = "Error Response: " + httpResponse.getStatusLine().toString();
         }
-        Log.v("strResult", strResult);
         return strResult;
     }
     public static String doPost(String url, List<NameValuePair> params) throws Exception {
