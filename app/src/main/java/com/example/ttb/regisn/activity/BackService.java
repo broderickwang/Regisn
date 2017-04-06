@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
+import android.widget.Toast;
 
 import com.example.ttb.regisn.bean.InfoBean;
 import com.example.ttb.regisn.util.FunctionHelper;
@@ -30,7 +31,6 @@ public class BackService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-
 		new ServerProvinceAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		new ServerCitiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		new ServerQDCountiesAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

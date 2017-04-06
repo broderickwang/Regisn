@@ -207,6 +207,9 @@ public class BaseInfoFHJActivity extends AppCompatActivity implements View.OnCli
     private void initAddresData3(final TextView tv){
         if(FunctionHelper.province_3j.size() > 0) {
             m_OptionJiGuan.setPicker(FunctionHelper.province_3j, FunctionHelper.cities_3j, FunctionHelper.contries_3j, true);
+
+            m_OptionJiGuan.setSelectOptions(22,9,8);
+
             m_OptionJiGuan.setCancelable(true);
 
             m_OptionJiGuan.setCyclic(false);

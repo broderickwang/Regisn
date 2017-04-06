@@ -111,9 +111,9 @@ public class FunctionHelper {
 
 //    public static String URL_ZS = "http://111.17.218.35:223/cjservice/CJ.ashx";
 
-//    public static String URL_CS = "http://119.167.227.12/sbbm2016service/CJ.ashx";
+    public static String URL_CS = "http://119.167.227.12/sbbm2016service/CJ.ashx";
 
-    public static String URL_CS = "http://111.17.218.35:223/cjservice/CJ.ashx";
+//    public static String URL_CS = "http://111.17.218.35:223/cjservice/CJ.ashx";
 
     public static boolean isModify = false;
 
