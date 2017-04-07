@@ -145,12 +145,21 @@ public class BaseInfoHJActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initAddresData3(final TextView tv){
+        String str = (String) tv.getText();
+        String[] ss = str.split("-");
+        int i1 = 0,i2 = 0,i3 = 0;
+        i1 = FunctionHelper.province_3j.indexOf(ss[0]);
+        if(ss.length == 3) {
+            i2 = FunctionHelper.cities_3j.get(i1).indexOf(ss[1]);
+            i3 = FunctionHelper.contries_3j.get(i1).get(i2).indexOf(ss[2]);
+        }
         if(FunctionHelper.province_3j.size() > 0) {
             m_OptionJiGuan.setPicker(FunctionHelper.province_3j, FunctionHelper.cities_3j, FunctionHelper.contries_3j, true);
 
             m_OptionJiGuan.setCancelable(true);
 
-            m_OptionJiGuan.setSelectOptions(22,9,8);
+//            m_OptionJiGuan.setSelectOptions(22,9,8);
+            m_OptionJiGuan.setSelectOptions(i1,i2,i3);
 
             m_OptionJiGuan.setCyclic(false);
 

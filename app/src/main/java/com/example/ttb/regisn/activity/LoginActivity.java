@@ -18,6 +18,7 @@ import com.example.ttb.regisn.util.FunctionHelper;
 import com.example.ttb.regisn.util.JsonUtil;
 import com.example.ttb.regisn.util.Utils;
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -29,29 +30,44 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.CookieStore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class LoginActivity extends Activity implements View.OnClickListener{
 
     private Button login;
     private EditText uname,upwd;
+    private KProgressHUD mKProgressHUD;
+    OkHttpClient client = new OkHttpClient.Builder().build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        getSupportActionBar().hide();
-//        getActionBar().hide();
         login = (Button)findViewById(R.id.login);
         uname = (EditText)findViewById(R.id.uname);
         upwd = (EditText)findViewById(R.id.pswd) ;
-
         login.setOnClickListener(this);
+
+        mKProgressHUD = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("请稍候")
+                .setDetailsLabel("登录中...")
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f);
     }
 
 
@@ -59,24 +75,75 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.login:
+                mKProgressHUD.show();
                 Object[] session = {uname.getText().toString(),upwd.getText().toString()};
                 try {
-//                    boolean result = (boolean)new LoginTask().execute(session).get();
                     boolean result = (boolean)new LoginTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,session).get();
                     if(result) {
                         Intent intent = new Intent(LoginActivity.this, SuccessActivity.class);
                         FunctionHelper.isModify = true;
                         FunctionHelper.stuCardNo = uname.getText().toString();
                         FunctionHelper.stuPWD = upwd.getText().toString();
+
+                        Request request = new Request.Builder()
+                                .url(FunctionHelper.URL_CS + "?action=GetStuModel&StuID="+FunctionHelper.stuID)
+                                .build();
+                        client.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String result = response.body().string();
+                                try {
+                                    JSONObject jo = new JSONObject(result);
+                                    String a = jo.getString("HouseholdType");
+                                    if(a.equalsIgnoreCase("户籍")){
+                                        Request request1 = new Request.Builder()
+                                                .url(FunctionHelper.URL_CS+"?action=GetHuJiStuSort&StuID="
+                                                        +FunctionHelper.stuID)
+                                                .build();
+                                        Response response1 = client.newCall(request1).execute();
+
+                                        JSONObject jo1 = new JSONObject(response1.body().string());
+                                        FunctionHelper.stuSchool = jo1.getString("SchoolName");
+                                        FunctionHelper.stuTime = jo1.getString("STime");
+                                        FunctionHelper.isHjchild = true;
+                                    } else {
+                                        Request request2 = new Request.Builder()
+                                                .url(FunctionHelper.URL_CS+"?action=GetFeiHuJiStuSort&StuID="
+                                                        +FunctionHelper.stuID)
+                                                .build();
+                                        Response response2 = client.newCall(request2).execute();
+
+                                        JSONObject jo2 = new JSONObject(response2.body().string());
+                                        FunctionHelper.stuSchool = jo2.getString("SchoolName");
+                                        FunctionHelper.stuTime = jo2.getString("STime");
+                                        FunctionHelper.isHjchild = false;
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                                if(result!=null){
+                                    Utils.setString2InMap(result);
+                                }
+
+                            }
+                        });
+
                         startActivity(intent);
+                        mKProgressHUD.dismiss();
                     }else{
+                        mKProgressHUD.dismiss();
                         final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                         Utils.showDialog(LoginActivity.this,"登录失败！\n"+"请检查用户名和密码");
 
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
+                } catch (Exception e)  {
+                    mKProgressHUD.dismiss();
                     e.printStackTrace();
                 }
                 break;

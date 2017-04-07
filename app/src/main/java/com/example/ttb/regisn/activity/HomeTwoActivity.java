@@ -24,6 +24,8 @@ import com.example.ttb.regisn.util.ServerInsertAsynTask;
 import com.example.ttb.regisn.util.UpdateAsynTask;
 import com.example.ttb.regisn.util.Utils;
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.gc.materialdesign.widgets.ProgressDialog;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
     RadioGroup m_Gongzuoxingzhi;
 
     private Intent intent;
+    private KProgressHUD mKProgressHUD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,11 +150,20 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
          }
         sbkh.setVisibility(View.GONE);
         yyzz.setVisibility(View.GONE);
+
+        mKProgressHUD = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("请稍候")
+                .setDetailsLabel("正在提交数据...")
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f);
     }
     private void setListner(){
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mKProgressHUD.show();
                 try {
                     View view1 = HomeTwoActivity.this.getWindow().getDecorView();
                     List<View> list = OutPut.setOutMap(OutPut.getAllChildViews(view1));
@@ -159,12 +171,13 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
 //                        result = (boolean) new UpdateAsynTask().execute().get();
                         result = (boolean)new UpdateAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
                         if(result) {
+                            mKProgressHUD.dismiss();
                             Toast.makeText(HomeTwoActivity.this, "修改成功！", Toast.LENGTH_SHORT).show();
                             // 16/4/25 跳转到successful页面
                             intent = new Intent(HomeTwoActivity.this,SuccessActivity.class);
                             startActivity(intent);
-                        }
-                        else{
+                        }else{
+                            mKProgressHUD.dismiss();
                             Utils.showDialog(HomeTwoActivity.this,FunctionHelper.errorMsg);
                             Toast.makeText(HomeTwoActivity.this,"修改失败！",Toast.LENGTH_SHORT).show();
                         }
@@ -173,11 +186,13 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                         //result = (boolean) new ServerInsertAsynTask().execute(HomeTwoActivity.this).get();
                         result = (boolean)new ServerInsertAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,HomeTwoActivity.this).get();
                         if(result){
+                            mKProgressHUD.dismiss();
                             Toast.makeText(HomeTwoActivity.this, "信息采集成功！", Toast.LENGTH_SHORT).show();
                             // 16/4/25 跳转到successful页面
                             intent = new Intent(HomeTwoActivity.this,SuccessActivity.class);
                             startActivity(intent);
                         }else{
+                            mKProgressHUD.dismiss();
                             Utils.showDialog(HomeTwoActivity.this,FunctionHelper.errorMsg);
                             Toast.makeText(HomeTwoActivity.this,"信息采集失败！",Toast.LENGTH_SHORT).show();
                             //Toast.makeText(HomeTwoActivity.this,FunctionHelper.errorMsg,Toast.LENGTH_SHORT).show();

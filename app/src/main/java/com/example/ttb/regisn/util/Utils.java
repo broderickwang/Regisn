@@ -55,8 +55,37 @@ public class Utils {
     //初始化选择器的数据
     public static String initPickViewData(final TextView tv, String str, OptionsPickerView pickerView,
                                         final ArrayList<InfoBean> list,final View m_Masker) {
+        int index = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getText().equalsIgnoreCase(tv.getText().toString())){
+                index = i;
+            }
+        }
+
         pickerView.setPicker(list);
         pickerView.setCancelable(true);
+
+        pickerView.setCyclic(false);
+        pickerView.setSelectOptions(0, 0, 0);
+        pickerView.setSelectOptions(index);
+
+        pickerView.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3) {
+                String tx = list.get(options1).getText();
+                result = options1+1;
+                tv.setText(tx);
+                m_Masker.setVisibility(View.GONE);
+            }
+        });
+        return "";
+    }
+
+    /*public static String initPickViewDataIndex(final TextView tv, String str, OptionsPickerView pickerView,
+                                          final ArrayList<InfoBean> list,final View m_Masker,int index) {
+        pickerView.setPicker(list);
+        pickerView.setCancelable(true);
+        pickerView.setSelectOptions(index);
 
         pickerView.setCyclic(false);
         pickerView.setSelectOptions(0, 0, 0);
@@ -71,7 +100,7 @@ public class Utils {
             }
         });
         return "";
-    }
+    }*/
     public static String initPickViewDataDefault(final TextView tv, String str, OptionsPickerView pickerView,
                                                  final ArrayList<InfoBean> list,final View m_Masker,int defaultOptions){
         pickerView.setPicker(list);
@@ -226,8 +255,14 @@ public class Utils {
                     text = (String) FunctionHelper.inMap.get("ddlBirthPlaceP")+"-"
                             +(String) FunctionHelper.inMap.get("ddlBirthPlaceC")+"-"+
                             (String) FunctionHelper.inMap.get("ddlBirthPlaceA");
-                }
-                else {
+                }else if(tag.equalsIgnoreCase("ddlIsRealNowAddr")){
+                    String index = (String)FunctionHelper.inMap.get("ddlIsRealNowAddr");
+                    if("0".equalsIgnoreCase(index)){
+                        text = "否-n";
+                    }else{
+                        text = "是-y";
+                    }
+                } else {
                     Object ob = FunctionHelper.inMap.get(tag);
                     if(ob != null)
                         text = FunctionHelper.inMap.get(tag).toString();
@@ -289,8 +324,7 @@ public class Utils {
                     FunctionHelper.isTeshuReg = false;
                 else
                     FunctionHelper.isTeshuReg = true;
-            }
-            else if(tag.equalsIgnoreCase("tbxSSCard1")){
+            }else if(tag.equalsIgnoreCase("tbxSSCard1")){
                 Object ob = FunctionHelper.inMap.get(tag);
                 if(ob != null)
                     text = FunctionHelper.inMap.get(tag).toString();
@@ -312,6 +346,16 @@ public class Utils {
                     FunctionHelper.isShowWG2 = false;
                 else
                     FunctionHelper.isShowWG2 = true;
+            }else if(tag.equalsIgnoreCase("ddlIsRealNowAddr")){
+                Object ob = FunctionHelper.inMap.get(tag);
+                String a = "";
+                if(ob != null)
+                    a = FunctionHelper.inMap.get(tag).toString();
+                if(a.equalsIgnoreCase("0")){
+                    text = "否-n";
+                }else{
+                    text = "是-y";
+                }
             }
             else {
                 Object ob = FunctionHelper.inMap.get(tag);

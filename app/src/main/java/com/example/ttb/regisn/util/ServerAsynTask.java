@@ -35,7 +35,7 @@ public class ServerAsynTask extends AsyncTask {
         FunctionHelper.fuhao.add(new InfoBean("10","壬",""));
         FunctionHelper.fuhao.add(new InfoBean("11","癸",""));
 
-        HttpClient hc = new DefaultHttpClient();
+        /*HttpClient hc = new DefaultHttpClient();
         HttpPost hp = new HttpPost(FunctionHelper.URL_CS + "?action=GetDictionaryAll");
 
         try {
@@ -56,6 +56,7 @@ public class ServerAsynTask extends AsyncTask {
         }catch (Exception e){
             e.printStackTrace();
             return null;
-        }
+        }*/
+        return  null;
     }
 }

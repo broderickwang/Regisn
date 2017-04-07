@@ -37,8 +37,7 @@ public class SuccessActivity extends AppCompatActivity {
         TextView tvTitle = (TextView) actionBar.getCustomView().findViewById(R.id.title);
         tvTitle.setText("个人信息");
 
-        try {
-//            result = (boolean)new AT1().execute().get();
+       /* try {
             result = (boolean)new AT1().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
             if (result) {
                 if (FunctionHelper.isHjchild) {
@@ -54,11 +53,7 @@ public class SuccessActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        }
-
-
-
-
+        }*/
 
 
         initView();
@@ -84,7 +79,7 @@ public class SuccessActivity extends AppCompatActivity {
                 else
                     intent= new Intent(SuccessActivity.this, BaseInfoFHJActivity.class);
                 FunctionHelper.isModify = true;
-                new ServerAsynTask().execute();
+//                new ServerAsynTask().execute();
                 startActivity(intent);
             }
         });
@@ -138,10 +133,10 @@ public class SuccessActivity extends AppCompatActivity {
                 try {
                     boolean result = (boolean)new AT1().execute().get();
                     //if(result){
-                        Intent intent = new Intent(SuccessActivity.this, BaseInfoHJActivity.class);
-                        FunctionHelper.isModify = true;
-                        new ServerAsynTask().execute();
-                        startActivity(intent);
+                    Intent intent = new Intent(SuccessActivity.this, BaseInfoHJActivity.class);
+                    FunctionHelper.isModify = true;
+//                    new ServerAsynTask().execute();
+                    startActivity(intent);
 //                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

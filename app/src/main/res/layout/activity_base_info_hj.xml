@@ -312,7 +312,7 @@
                     android:drawableRight="@drawable/ep"
                     android:gravity="center"
                     android:tag="ddlEthnic"
-                    android:text="汉族-0" />
+                    android:text="汉族-01" />
 
                 <TextView
                     android:layout_width="0dp"
