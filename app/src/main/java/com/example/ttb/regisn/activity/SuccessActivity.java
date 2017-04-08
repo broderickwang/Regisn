@@ -2,6 +2,8 @@ package com.example.ttb.regisn.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,19 +12,45 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ttb.regisn.R;
 import com.example.ttb.regisn.util.FHJInfoShowAsynTask;
 import com.example.ttb.regisn.util.FunctionHelper;
 import com.example.ttb.regisn.util.HJInfoShowAsynTask;
 import com.example.ttb.regisn.util.ServerAsynTask;
+import com.example.ttb.regisn.util.Utils;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class SuccessActivity extends AppCompatActivity {
     private TextView a1,name,info,title;
     private Button modify;
     boolean result;
+
+    Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    showInfo();
+                    break;
+                case 2:
+                    Toast.makeText(SuccessActivity.this, "获取信息失败", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +65,7 @@ public class SuccessActivity extends AppCompatActivity {
         TextView tvTitle = (TextView) actionBar.getCustomView().findViewById(R.id.title);
         tvTitle.setText("个人信息");
 
+        new AThread().start();
        /* try {
             result = (boolean)new AT1().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
             if (result) {
@@ -58,7 +87,7 @@ public class SuccessActivity extends AppCompatActivity {
 
         initView();
 
-        showInfo();
+        //showInfo();
 
     }
 
@@ -117,37 +146,62 @@ public class SuccessActivity extends AppCompatActivity {
         a1.setText(a);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_activity_actions, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                break;
-            case R.id.action_modify:
-                try {
-                    boolean result = (boolean)new AT1().execute().get();
-                    //if(result){
-                    Intent intent = new Intent(SuccessActivity.this, BaseInfoHJActivity.class);
-                    FunctionHelper.isModify = true;
-//                    new ServerAsynTask().execute();
-                    startActivity(intent);
-//                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
+    class AThread extends Thread{
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        @Override
+        public void run() {
+            Request request = new Request.Builder()
+                    .url(FunctionHelper.URL_CS + "?action=GetStuModel&StuID="+FunctionHelper.stuID)
+                    .build();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    mHandler.sendEmptyMessage(2);
                 }
 
-                break;
-            default:
-                break;
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String result = response.body().string();
+                    try {
+                        JSONObject jo = new JSONObject(result);
+                        String a = jo.getString("HouseholdType");
+                        if(a.equalsIgnoreCase("户籍")){
+                            Request request1 = new Request.Builder()
+                                    .url(FunctionHelper.URL_CS+"?action=GetHuJiStuSort&StuID="
+                                            +FunctionHelper.stuID)
+                                    .build();
+                            Response response1 = client.newCall(request1).execute();
+
+                            JSONObject jo1 = new JSONObject(response1.body().string());
+                            FunctionHelper.stuSchool = jo1.getString("SchoolName");
+                            FunctionHelper.stuTime = jo1.getString("STime");
+                            FunctionHelper.isHjchild = true;
+                        } else {
+                            Request request2 = new Request.Builder()
+                                    .url(FunctionHelper.URL_CS+"?action=GetFeiHuJiStuSort&StuID="
+                                            +FunctionHelper.stuID)
+                                    .build();
+                            Response response2 = client.newCall(request2).execute();
+
+                            JSONObject jo2 = new JSONObject(response2.body().string());
+                            FunctionHelper.stuSchool = jo2.getString("SchoolName");
+                            FunctionHelper.stuTime = jo2.getString("STime");
+                            FunctionHelper.isHjchild = false;
+                        }
+
+                        mHandler.sendEmptyMessage(1);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        mHandler.sendEmptyMessage(2);
+                    }
+
+                    if(result!=null){
+                        Utils.setString2InMap(result);
+                    }
+
+                }
+            });
         }
-        return super.onOptionsItemSelected(item);
     }
 }

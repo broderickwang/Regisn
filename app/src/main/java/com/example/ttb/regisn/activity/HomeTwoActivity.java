@@ -2,6 +2,8 @@ package com.example.ttb.regisn.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +29,14 @@ import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.widgets.ProgressDialog;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HomeTwoActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -44,6 +53,34 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
 
     private Intent intent;
     private KProgressHUD mKProgressHUD;
+
+    Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            mKProgressHUD.dismiss();
+            switch (msg.what){
+                case 1:
+                    Toast.makeText(HomeTwoActivity.this, "修改成功！", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(HomeTwoActivity.this,SuccessActivity.class);
+                    startActivity(intent);
+                    break;
+                case 2:
+                    Utils.showDialog(HomeTwoActivity.this,FunctionHelper.errorMsg);
+                    Toast.makeText(HomeTwoActivity.this,"修改失败！",Toast.LENGTH_SHORT).show();
+                    break;
+                case 3:
+                    Toast.makeText(HomeTwoActivity.this, "信息采集成功！", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(HomeTwoActivity.this,SuccessActivity.class);
+                    startActivity(intent);
+                    break;
+                case 4:
+                    Utils.showDialog(HomeTwoActivity.this,FunctionHelper.errorMsg);
+                    Toast.makeText(HomeTwoActivity.this,"信息采集失败！",Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,13 +204,12 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                 try {
                     View view1 = HomeTwoActivity.this.getWindow().getDecorView();
                     List<View> list = OutPut.setOutMap(OutPut.getAllChildViews(view1));
-                    if (FunctionHelper.isModify){
-//                        result = (boolean) new UpdateAsynTask().execute().get();
+                    new CommitThread().start();
+                    /*if (FunctionHelper.isModify){
                         result = (boolean)new UpdateAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
                         if(result) {
                             mKProgressHUD.dismiss();
                             Toast.makeText(HomeTwoActivity.this, "修改成功！", Toast.LENGTH_SHORT).show();
-                            // 16/4/25 跳转到successful页面
                             intent = new Intent(HomeTwoActivity.this,SuccessActivity.class);
                             startActivity(intent);
                         }else{
@@ -183,21 +219,18 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                     else {
-                        //result = (boolean) new ServerInsertAsynTask().execute(HomeTwoActivity.this).get();
                         result = (boolean)new ServerInsertAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,HomeTwoActivity.this).get();
                         if(result){
                             mKProgressHUD.dismiss();
                             Toast.makeText(HomeTwoActivity.this, "信息采集成功！", Toast.LENGTH_SHORT).show();
-                            // 16/4/25 跳转到successful页面
                             intent = new Intent(HomeTwoActivity.this,SuccessActivity.class);
                             startActivity(intent);
                         }else{
                             mKProgressHUD.dismiss();
                             Utils.showDialog(HomeTwoActivity.this,FunctionHelper.errorMsg);
                             Toast.makeText(HomeTwoActivity.this,"信息采集失败！",Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(HomeTwoActivity.this,FunctionHelper.errorMsg,Toast.LENGTH_SHORT).show();
                         }
-                    }
+                    }*/
                 }catch (Exception e){
                     Log.e("error---->",e.getMessage());
                 }
@@ -272,11 +305,9 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                     View view1 = this.getWindow().getDecorView();
                     List<View> list = OutPut.setOutMap(OutPut.getAllChildViews(view1));
                     if (FunctionHelper.isModify){
-//                        result = (boolean) new UpdateAsynTask().execute().get();
                         result = (boolean)new UpdateAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
                         if(result) {
                             Toast.makeText(HomeTwoActivity.this, "修改成功！", Toast.LENGTH_SHORT).show();
-                            // 16/4/25 跳转到successful页面
                             intent = new Intent(HomeTwoActivity.this,SuccessActivity.class);
                             startActivity(intent);
                         }
@@ -286,11 +317,9 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                     else {
-                       // result = (boolean) new ServerInsertAsynTask().execute(HomeTwoActivity.this).get();
                         result = (boolean)new ServerInsertAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,HomeTwoActivity.this).get();
                         if(result){
                             Toast.makeText(HomeTwoActivity.this, "信息采集成功！", Toast.LENGTH_SHORT).show();
-                            // 16/4/25 跳转到successful页面
                             intent = new Intent(HomeTwoActivity.this,SuccessActivity.class);
                             startActivity(intent);
                         }else{
@@ -302,6 +331,93 @@ public class HomeTwoActivity extends AppCompatActivity implements View.OnClickLi
                     Log.e("error---->",e.getMessage());
                 }
                 break;
+        }
+    }
+
+    class CommitThread extends Thread{
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        String url;
+
+        @Override
+        public void run() {
+            super.run();
+            /*try{
+                if (FunctionHelper.isModify){
+                    if(FunctionHelper.isHjchild){
+                        url = FunctionHelper.URL_CS+"?action=UpdateHuJiStu";
+                    }else{
+                        url = FunctionHelper.URL_CS+"?action=UpdateFeiHuJiStu";
+                    }
+                    Request request = new Request.Builder()
+                            .url(url)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            mHandler.sendEmptyMessage(2);
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            mHandler.sendEmptyMessage(1);
+                        }
+                    });
+                }
+                else {
+                    if(FunctionHelper.isHjchild){
+                        url = FunctionHelper.URL_CS+"?action=InsertHuJiStu";
+
+                    }else{
+                        url = FunctionHelper.URL_CS+"?action=InsertFeiHuJiStu";
+                    }
+                    Request request = new Request.Builder()
+                            .url(url)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            mHandler.sendEmptyMessage(4);
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            mHandler.sendEmptyMessage(3);
+                        }
+                    });
+                }
+            }catch (Exception e){
+
+            }*/
+            try{
+                if (FunctionHelper.isModify){
+                    result = (boolean)new UpdateAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
+                    if(result) {
+                        mHandler.sendEmptyMessage(1);
+                    }else{
+                        mHandler.sendEmptyMessage(2);
+                    }
+                }
+                else {
+                    result = (boolean)new ServerInsertAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,HomeTwoActivity.this).get();
+                    if(result){
+                        mHandler.sendEmptyMessage(3);
+                    }else{
+                        mHandler.sendEmptyMessage(4);
+                    }
+                }
+            }catch (Exception e){
+
+            }
+
+
+        }
+    }
+    class ModifyThread extends Thread{
+        @Override
+        public void run() {
+            super.run();
         }
     }
 }

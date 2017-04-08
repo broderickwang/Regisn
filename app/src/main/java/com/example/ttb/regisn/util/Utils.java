@@ -193,6 +193,7 @@ public class Utils {
 
     //将获取到的字符串，放到inmap中，方便给控件赋值
     public static void setString2InMap(String str){
+        FunctionHelper.inMap.clear();
         try {
             JSONObject jsonObject = new JSONObject(str);
             Iterator io = jsonObject.keys();

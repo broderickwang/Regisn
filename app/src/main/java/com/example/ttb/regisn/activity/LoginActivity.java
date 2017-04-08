@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,10 +36,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.CookieStore;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -50,7 +48,25 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     private Button login;
     private EditText uname,upwd;
     private KProgressHUD mKProgressHUD;
-    OkHttpClient client = new OkHttpClient.Builder().build();
+
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    Intent intent = new Intent(LoginActivity.this, SuccessActivity.class);
+                    startActivity(intent);
+                    mKProgressHUD.dismiss();
+                    break;
+                case 2:
+                    mKProgressHUD.dismiss();
+                    Utils.showDialog(LoginActivity.this,"登录失败！\n"+"请检查用户名和密码");
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,65 +96,15 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 try {
                     boolean result = (boolean)new LoginTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,session).get();
                     if(result) {
-                        Intent intent = new Intent(LoginActivity.this, SuccessActivity.class);
                         FunctionHelper.isModify = true;
                         FunctionHelper.stuCardNo = uname.getText().toString();
                         FunctionHelper.stuPWD = upwd.getText().toString();
-
-                        Request request = new Request.Builder()
-                                .url(FunctionHelper.URL_CS + "?action=GetStuModel&StuID="+FunctionHelper.stuID)
-                                .build();
-                        client.newCall(request).enqueue(new Callback() {
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-
-                            }
-
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-                                String result = response.body().string();
-                                try {
-                                    JSONObject jo = new JSONObject(result);
-                                    String a = jo.getString("HouseholdType");
-                                    if(a.equalsIgnoreCase("户籍")){
-                                        Request request1 = new Request.Builder()
-                                                .url(FunctionHelper.URL_CS+"?action=GetHuJiStuSort&StuID="
-                                                        +FunctionHelper.stuID)
-                                                .build();
-                                        Response response1 = client.newCall(request1).execute();
-
-                                        JSONObject jo1 = new JSONObject(response1.body().string());
-                                        FunctionHelper.stuSchool = jo1.getString("SchoolName");
-                                        FunctionHelper.stuTime = jo1.getString("STime");
-                                        FunctionHelper.isHjchild = true;
-                                    } else {
-                                        Request request2 = new Request.Builder()
-                                                .url(FunctionHelper.URL_CS+"?action=GetFeiHuJiStuSort&StuID="
-                                                        +FunctionHelper.stuID)
-                                                .build();
-                                        Response response2 = client.newCall(request2).execute();
-
-                                        JSONObject jo2 = new JSONObject(response2.body().string());
-                                        FunctionHelper.stuSchool = jo2.getString("SchoolName");
-                                        FunctionHelper.stuTime = jo2.getString("STime");
-                                        FunctionHelper.isHjchild = false;
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                                if(result!=null){
-                                    Utils.setString2InMap(result);
-                                }
-
-                            }
-                        });
-
+                        Intent intent = new Intent(LoginActivity.this, SuccessActivity.class);
                         startActivity(intent);
                         mKProgressHUD.dismiss();
+//                        new LoginThread(handler).start();
                     }else{
                         mKProgressHUD.dismiss();
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                         Utils.showDialog(LoginActivity.this,"登录失败！\n"+"请检查用户名和密码");
 
                     }
@@ -150,6 +116,75 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         }
     }
 }
+
+class LoginThread extends Thread{
+    OkHttpClient client = new OkHttpClient.Builder().build();
+
+    Handler mHandler;
+
+    public LoginThread(Handler mHandler) {
+        this.mHandler = mHandler;
+    }
+
+    @Override
+    public void run() {
+
+
+        Request request = new Request.Builder()
+                .url(FunctionHelper.URL_CS + "?action=GetStuModel&StuID="+FunctionHelper.stuID)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                mHandler.sendEmptyMessage(2);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String result = response.body().string();
+                try {
+                    JSONObject jo = new JSONObject(result);
+                    String a = jo.getString("HouseholdType");
+                    if(a.equalsIgnoreCase("户籍")){
+                        Request request1 = new Request.Builder()
+                                .url(FunctionHelper.URL_CS+"?action=GetHuJiStuSort&StuID="
+                                        +FunctionHelper.stuID)
+                                .build();
+                        Response response1 = client.newCall(request1).execute();
+
+                        JSONObject jo1 = new JSONObject(response1.body().string());
+                        FunctionHelper.stuSchool = jo1.getString("SchoolName");
+                        FunctionHelper.stuTime = jo1.getString("STime");
+                        FunctionHelper.isHjchild = true;
+                    } else {
+                        Request request2 = new Request.Builder()
+                                .url(FunctionHelper.URL_CS+"?action=GetFeiHuJiStuSort&StuID="
+                                        +FunctionHelper.stuID)
+                                .build();
+                        Response response2 = client.newCall(request2).execute();
+
+                        JSONObject jo2 = new JSONObject(response2.body().string());
+                        FunctionHelper.stuSchool = jo2.getString("SchoolName");
+                        FunctionHelper.stuTime = jo2.getString("STime");
+                        FunctionHelper.isHjchild = false;
+                    }
+
+                    mHandler.sendEmptyMessage(1);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    mHandler.sendEmptyMessage(2);
+                }
+
+                if(result!=null){
+                    Utils.setString2InMap(result);
+                }
+
+            }
+        });
+    }
+}
+
 class LoginTask extends AsyncTask{
     boolean bl = false;
     @Override
@@ -183,47 +218,9 @@ class LoginTask extends AsyncTask{
             return bl;
         }
     }
-}
 
-//获取stumodel的线程,并赋值到inmap中
-class AT1 extends AsyncTask{
-    boolean bl = false;
     @Override
-    protected Object doInBackground(Object[] objects) {
-        HttpClient hc = new DefaultHttpClient();
-
-        try {
-
-            HttpGet httpGet = new HttpGet(FunctionHelper.URL_CS + "?action=GetStuModel&StuID="+FunctionHelper.stuID);
-
-            HttpResponse hr = hc.execute(httpGet);
-
-            String result = null;
-            //获取报文
-            if(hr.getStatusLine().getStatusCode() == 200){
-                result = EntityUtils.toString(hr.getEntity());
-                Log.i("result = ====",result);
-                JSONObject jo = new JSONObject(result);
-                String a = jo.getString("HouseholdType");
-                if(a.equalsIgnoreCase("户籍"))
-                    FunctionHelper.isHjchild = true;
-                else
-                    FunctionHelper.isHjchild = false;
-                if(result != null){
-                    Utils.setString2InMap(result);
-                    bl = true;
-                }else{
-                    bl = false;
-                }
-            }
-            //关闭连接
-            if(hc != null){
-                hc.getConnectionManager().shutdown();
-            }
-            return bl;
-        }catch (Exception e){
-            e.printStackTrace();
-            return bl;
-        }
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
     }
 }
