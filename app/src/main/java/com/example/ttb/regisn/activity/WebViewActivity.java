@@ -73,7 +73,13 @@ public class WebViewActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         getMsg = response.body().string();
-                        new ABC(getMsg).run();
+                        JSONArray ja1 = null;
+                        try {
+                            ja1 = new JSONArray(getMsg);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        JsonUtil.JsonInfoParser(ja1);
                     }
                 }
         );
@@ -129,12 +135,6 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     class  ABC extends Thread{
-        private String str;
-
-        public ABC(String str) {
-            this.str = str;
-        }
-
         @Override
         public void run() {
             super.run();

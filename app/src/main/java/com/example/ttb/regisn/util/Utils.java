@@ -57,8 +57,10 @@ public class Utils {
                                         final ArrayList<InfoBean> list,final View m_Masker) {
         int index = 0;
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getText().equalsIgnoreCase(tv.getText().toString())){
+            String str1 = tv.getText().toString();
+            if(list.get(i).getText().equalsIgnoreCase(str1)){
                 index = i;
+                break;
             }
         }
 
@@ -66,7 +68,6 @@ public class Utils {
         pickerView.setCancelable(true);
 
         pickerView.setCyclic(false);
-        pickerView.setSelectOptions(0, 0, 0);
         pickerView.setSelectOptions(index);
 
         pickerView.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {

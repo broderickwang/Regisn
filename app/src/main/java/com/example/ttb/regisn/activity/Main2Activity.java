@@ -25,7 +25,6 @@ public class Main2Activity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                new ServerAsynTask().execute();
                 new ServerAsynTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 Intent intent = new Intent(Main2Activity.this,WebViewActivity.class/*MainActivity.class*/);  //从启动动画ui跳转到主ui
                 startActivity(intent);

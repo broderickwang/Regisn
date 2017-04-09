@@ -144,7 +144,6 @@ public class FuzhuInfoActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.foreign:
                 m_Selwy = Utils.initPickViewData(m_Foreign,"请选择外语语种", m_OptionMenu, FunctionHelper.foreignList,m_Masker);
-                m_OptionMenu.setSelectOptions(1);
                 m_OptionMenu.show();
                 break;
             case R.id.shangxiaxue:
